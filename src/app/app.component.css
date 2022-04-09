@@ -1,0 +1,7 @@
+:host {
+    /* Will guarantee footeer stays at the bottom in not 100vh is reached */
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
+}
