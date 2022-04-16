@@ -1,43 +1,43 @@
 <mat-toolbar class="header">
     <div class="header-home">
-        <button mat-button class="header-menu-button" aria-label="Button to open home page">
+        <a mat-button class="header-menu-button" aria-label="Button to open home page">
             <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
             Quizzio
-        </button>
+        </a>
     </div>
 
     <span class="example-spacer"></span>
 
     <div class="header-nav">
-        <button mat-button class="header-menu-button" aria-label="Button to open quizz page">
+        <a routerLink="/quizzes" mat-button class="header-menu-button" aria-label="Button to open quizz page">
             <mat-icon>extension</mat-icon>
             Quizzes
-        </button>
+        </a>
 
-        <button mat-button class="header-menu-button" aria-label="Button to open quizz page">
+        <a routerLink="/create" mat-button class="header-menu-button" aria-label="Button to open quizz page">
             <mat-icon>edit_note</mat-icon>
             Create a quizz
-        </button>
+        </a>
 
-        <button mat-button class="header-menu-button" aria-label="Button to open profile page">
+        <a routerLink="/profile" mat-button class="header-menu-button" aria-label="Button to open profile page">
             <mat-icon>person</mat-icon>
             Profile
-        </button>
+        </a>
 
-        <button mat-button class="header-menu-button" aria-label="Button to open login page">
+        <a routerLink="/login" mat-button class="header-menu-button" aria-label="Button to open login page">
             <mat-icon>login</mat-icon>
             Login
-        </button>
+        </a>
 
-        <button mat-button class="header-menu-button" aria-label="Button to logout">
+        <a routerLink="/logout" mat-button class="header-menu-button" aria-label="Button to logout">
             <mat-icon>logout</mat-icon>
             Logout
-        </button>
+        </a>
 
-        <button mat-button class="header-menu-button" aria-label="Button to open register page">
+        <a routerLink="/register" mat-button class="header-menu-button" aria-label="Button to open register page">
             <mat-icon>how_to_reg</mat-icon>
             Register
-        </button>
+        </a>
 
     </div>
 
