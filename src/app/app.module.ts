@@ -11,7 +11,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-import { environment } from '../environments/environment';
+import { environment } from 'src/environments/environment.prod';
 import { AppRoutingModule } from './app-routing.module';
 
 //Components
@@ -29,16 +29,7 @@ import { AuthService } from './core/services/auth.service';
         BrowserAnimationsModule,
         SharedModule,
         CoreModule,
-        AngularFireModule.initializeApp(
-            {
-                apiKey: "AIzaSyAIcBS-kb8AjyRyJFAVxFhCq1AFQSdB3pI",
-                authDomain: "quizzio-2daf3.firebaseapp.com",
-                projectId: "quizzio-2daf3",
-                storageBucket: "quizzio-2daf3.appspot.com",
-                messagingSenderId: "28761128387",
-                appId: "1:28761128387:web:e0ad436f86aa5375455176"
-            }
-        ),
+        AngularFireModule.initializeApp(environment.firebase),
         AngularFireAuthModule,
         AngularFirestoreModule,
         AngularFireStorageModule,
