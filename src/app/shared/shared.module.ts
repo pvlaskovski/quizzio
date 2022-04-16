@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { LoginComponent } from './login/login.component';
         HeaderComponent,
         FooterComponent,
         LoginComponent,
+        RegisterComponent,
     ],
     imports: [
         CommonModule,
@@ -37,6 +39,7 @@ import { LoginComponent } from './login/login.component';
         HeaderComponent,
         FooterComponent,
         LoginComponent,
+        RegisterComponent,
     ]
 })
 export class SharedModule { }
