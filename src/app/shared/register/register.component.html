@@ -6,14 +6,14 @@
             <p>
                 <mat-form-field>
                     <mat-icon matPrefix class="my-icon">mail</mat-icon>
-                    <input type="email" matInput placeholder="E-mail" formControlName="email">
+                    <input type="email" matInput placeholder="E-mail" formControlName="email" #email>
                 </mat-form-field>
             </p>
 
             <p>
                 <mat-form-field>
                     <mat-icon matPrefix class="my-icon">lock</mat-icon>
-                    <input type="password" matInput placeholder="Password" formControlName="password">
+                    <input type="password" matInput placeholder="Password" formControlName="password" #password>
                     <mat-icon matSuffix>visibility</mat-icon>
                 </mat-form-field>
             </p>
@@ -32,7 +32,8 @@
             </p>
 
             <div class="button">
-                <button type="submit" mat-button>Register</button>
+                <button (click)="authService.register(email.value, password.value)" type="button"
+                    mat-button>Register</button>
             </div>
         </form>
     </mat-card-content>
