@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+// Components
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { LoginComponent } from './components/login/login.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { RegisterComponent } from './components/register/register.component';
 
 // Angular Materials
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -17,10 +21,14 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import {MatListModule} from '@angular/material/list'; 
 
 
+
 @NgModule({
     declarations: [
         HeaderComponent,
         FooterComponent,
+        LoginComponent,
+        ProfileComponent,
+        RegisterComponent,
     ],
     imports: [
         CommonModule,
@@ -38,6 +46,9 @@ import {MatListModule} from '@angular/material/list';
     exports: [
         HeaderComponent,
         FooterComponent,
+        LoginComponent,
+        ProfileComponent,
+        RegisterComponent,
     ]
 })
 export class CoreModule { }
