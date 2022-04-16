@@ -6,6 +6,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';  
 import {MatInputModule} from '@angular/material/input';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatExpansionModule} from '@angular/material/expansion';  
 
 //Modiles
 import { NgModule } from '@angular/core';
@@ -16,6 +18,8 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
+import {MatListModule} from '@angular/material/list'; 
 
 
 @NgModule({
@@ -24,6 +28,7 @@ import { RegisterComponent } from './register/register.component';
         FooterComponent,
         LoginComponent,
         RegisterComponent,
+        ProfileComponent,
     ],
     imports: [
         CommonModule,
@@ -34,12 +39,16 @@ import { RegisterComponent } from './register/register.component';
         MatCardModule,
         MatFormFieldModule,
         MatInputModule,
+        MatTabsModule,
+        MatListModule,
+        MatExpansionModule,
     ],
     exports: [
         HeaderComponent,
         FooterComponent,
         LoginComponent,
         RegisterComponent,
+        ProfileComponent,
     ]
 })
 export class SharedModule { }
