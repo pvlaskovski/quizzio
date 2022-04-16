@@ -9,9 +9,10 @@ import {MatInputModule} from '@angular/material/input';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatExpansionModule} from '@angular/material/expansion';  
 
-//Modiles
+//Modules
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 //Components
 import { HeaderComponent } from './header/header.component';
@@ -42,6 +43,7 @@ import {MatListModule} from '@angular/material/list';
         MatTabsModule,
         MatListModule,
         MatExpansionModule,
+        RouterModule
     ],
     exports: [
         HeaderComponent,
