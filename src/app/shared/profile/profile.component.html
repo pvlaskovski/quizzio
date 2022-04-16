@@ -1,5 +1,5 @@
 <mat-card>
-    <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
+    <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
 
     <mat-card-title>My profile page</mat-card-title>
 
@@ -46,6 +46,12 @@
     <mat-tab label="Favorite quizess">
         <!-- TODO: Page if no quizzes -->
         Favorite quizess
+
+        <mat-nav-list *ngFor="let quizz of quizzes">
+            <mat-list-item>
+                <a matLine href="#">{{quizz.title}}</a>
+            </mat-list-item>
+        </mat-nav-list>
     </mat-tab>
 
     <mat-tab label="Achievements">
