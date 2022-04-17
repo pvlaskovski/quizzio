@@ -27,8 +27,19 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 #Features
+<!-- TODO: toaster messages for login and register and forgotten -->
+
 ##Login form
 * Model driven form
 * Separate field validation (email/password) and form subbmition validation
 * Login button disabled if form is not valid
 * Toggle visibility icon for the password field
+
+
+<!-- TODO -->
+##Register form
+* Reactive form
+* Validations: email, password security level, password and repeat password are equal
+* Register button disabled if form is not valid
+* Toggle visibility icon for the password and repeat password field
+

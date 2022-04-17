@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from '../app-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 // Components
 import { HeaderComponent } from './components/header/header.component';
@@ -20,8 +21,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import {MatListModule} from '@angular/material/list'; 
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -34,7 +37,9 @@ import { FormsModule } from '@angular/forms';
     ],
     imports: [
         CommonModule,
+        SharedModule,
         FormsModule,
+        ReactiveFormsModule,
         MatToolbarModule,
         MatIconModule,
         MatButtonModule,
@@ -45,6 +50,7 @@ import { FormsModule } from '@angular/forms';
         MatTabsModule,
         MatListModule,
         MatExpansionModule,
+        MatProgressBarModule,
         AppRoutingModule,
     ],
     exports: [
