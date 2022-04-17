@@ -12,10 +12,12 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from 'src/environments/environment.prod';
-import { AppRoutingModule } from './app-routing.module';
+
 
 //Components
 import { AppComponent } from './app.component';
+
+import { RouterModule, Routes } from '@angular/router';
 
 // Services
 import { AuthService } from './core/services/auth.service';
@@ -28,12 +30,12 @@ import { AuthService } from './core/services/auth.service';
         BrowserModule,
         BrowserAnimationsModule,
         CoreModule,
+        RouterModule.forRoot([]),
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireAuthModule,
         AngularFirestoreModule,
         AngularFireStorageModule,
         AngularFireDatabaseModule,
-        AppRoutingModule,
     ],
     providers: [AuthService],
     bootstrap: [AppComponent]
