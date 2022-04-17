@@ -21,6 +21,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import {MatListModule} from '@angular/material/list'; 
 
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import {MatListModule} from '@angular/material/list';
     ],
     imports: [
         CommonModule,
+        FormsModule,
         MatToolbarModule,
         MatIconModule,
         MatButtonModule,
