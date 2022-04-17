@@ -41,18 +41,18 @@ export class AuthService {
             .signInWithEmailAndPassword(email, password)
             .then((result) => {
                 this.ngZone.run(() => {
-                    this.router.navigate(['dashboard']);
+                    this.router.navigate(['/']);
                 });
                 this.SetUserData(result.user);
             })
             .catch((error) => {
-                window.alert(error.message);
+                // console.log(error.message);
+                // window.alert(error.message);
             });
     }
 
     // Sign up with email/password
     register(email: string, password: string) {
-        console.log('We are in the register function');
         
         return this.afAuth
             .createUserWithEmailAndPassword(email, password)
@@ -79,7 +79,7 @@ export class AuthService {
     // Returns true when user is looged in and email is verified
     get isLoggedIn(): boolean {
         const user = JSON.parse(localStorage.getItem('user')!);
-        return user !== null && user.emailVerified !== false ? true : false;
+        return user !== null && user.emailVerified !== false ? true : false;  
     }
 
     /* Setting up user data when sign in with username/password, 
