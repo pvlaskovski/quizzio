@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AppRoutingModule } from '../app-routing.module';
 
 // Components
 import { HeaderComponent } from './components/header/header.component';
@@ -42,6 +43,7 @@ import {MatListModule} from '@angular/material/list';
         MatTabsModule,
         MatListModule,
         MatExpansionModule,
+        AppRoutingModule,
     ],
     exports: [
         HeaderComponent,

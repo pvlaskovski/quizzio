@@ -17,10 +17,11 @@ import { environment } from 'src/environments/environment.prod';
 //Components
 import { AppComponent } from './app.component';
 
-import { RouterModule, Routes } from '@angular/router';
-
 // Services
 import { AuthService } from './core/services/auth.service';
+
+//Modules
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
     declarations: [
@@ -30,12 +31,12 @@ import { AuthService } from './core/services/auth.service';
         BrowserModule,
         BrowserAnimationsModule,
         CoreModule,
-        RouterModule.forRoot([]),
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireAuthModule,
         AngularFirestoreModule,
         AngularFireStorageModule,
         AngularFireDatabaseModule,
+        AppRoutingModule,
     ],
     providers: [AuthService],
     bootstrap: [AppComponent]
