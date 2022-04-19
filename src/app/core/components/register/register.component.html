@@ -2,38 +2,63 @@
 <mat-card>
     <mat-card-title>Register</mat-card-title>
     <mat-card-content>
-        <form #registerForm="ngForm" (submit)="onSubmit()">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <p>
                 <mat-form-field>
                     <mat-icon matPrefix class="my-icon">mail</mat-icon>
-                    <input matInput type="email" placeholder="E-mail" name="email" ngModel >
+                    <input formControlName="email" matInput type="email" placeholder="E-mail" name="email">
+                    <mat-error>
+                        Please enter a valid e-mail address!
+                    </mat-error>
                 </mat-form-field>
             </p>
+            <ng-container formGroupName="passwords">
+                <p>
+                    <mat-form-field>
+                        <mat-icon matPrefix class="my-icon">lock</mat-icon>
+                        <input formControlName="password" [type]="isPasswordVisible ? 'text' : 'password'" matInput
+                            placeholder="Password" name="password">
+                        <a matSuffix (click)="togglePasswordVisibility()" class="clicable-icon">
+                            <mat-icon> {{ isPasswordVisible ? 'visibility_off' : 'visibility' }}</mat-icon>
+                        </a>
+    
+                    </mat-form-field>
+                    <app-custom-progress-bar [barWidth]="'50%'" [barColor]="'red'" [strenghtNote]="'Weak'">
+                    </app-custom-progress-bar>
+    
+                </p>
+    
+                <p>
+                    <mat-form-field>
+                        <mat-icon matPrefix class="my-icon">lock</mat-icon>
+                        <input formControlName="rePassword" [type]="isRePasswordVisible ? 'text' : 'password'" matInput
+                            placeholder="Repeat Password" name="rePassword">
+                        <a matSuffix (click)="toggleRePasswordVisibility()" class="clicable-icon">
+                            <mat-icon> {{ isRePasswordVisible ? 'visibility_off' : 'visibility' }}</mat-icon>
+                        </a>
+                        <mat-error>
+                            {{ 
+                                passwordsGroup.controls['password'].errors?.['required'] || passwordsGroup.controls['rePassword'].errors?.['required'] 
+                                ? "Password and Repeat password can not be empty!" : null}}
+                        </mat-error>
 
-            <p>
-                <mat-form-field>
-                    <mat-icon matPrefix class="my-icon">lock</mat-icon>
-                    <input type="password" matInput placeholder="Password" name="password" ngModel >
-                    <mat-icon matSuffix>visibility</mat-icon>
-                </mat-form-field>
-            </p>
+                        <mat-error *ngIf="!passwordsGroup.controls['password'].errors?.['required'] && !passwordsGroup.controls['rePassword'].errors?.['required']">
+                            {{ passwordsGroup.controls['rePassword'].errors?.['stringsMismatch']
+                            ? "Password and Repeat password don't match" : null}}
+                        </mat-error>
+                    </mat-form-field>
+                </p>
 
-            <p>
-                <mat-form-field>
-                    <mat-icon matPrefix class="my-icon">lock</mat-icon>
-                    <input type="password" matInput placeholder="Repeat Password" name="rePassword" ngModel>
-                    <mat-icon matSuffix>visibility</mat-icon>
-                </mat-form-field>
-            </p>
+            </ng-container>
 
-            <p *ngIf="true" class="error">
-                <!-- TODO: add error messages -->
-                Custome error message
+
+            <p *ngIf="!isSuccesfullRegister" class="error">
+                Unsuccesfull registration. Please review your details and try again!
             </p>
 
             <div class="button">
-                <button type="submit"
-                    mat-button>Register</button>
+                <button type="submit" mat-raised-button color="primary"
+                    [disabled]="!registerForm.valid">Register</button>
             </div>
         </form>
     </mat-card-content>

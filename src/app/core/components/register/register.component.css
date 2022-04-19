@@ -35,3 +35,7 @@ mat-card-title {
     display: flex;
     justify-content: flex-end;
 }
+
+.clicable-icon:hover{
+    cursor: pointer;
+}
