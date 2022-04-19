@@ -23,7 +23,10 @@
                         </a>
     
                     </mat-form-field>
-                    <app-custom-progress-bar [barWidth]="'50%'" [barColor]="'red'" [strenghtNote]="'Weak'">
+                    <app-custom-progress-bar 
+                    [barWidth] = "passwordStrenghtMeter"
+                    [barColor]="passwordStrenghtColor" 
+                    [strenghtNote]="passwordStrenghtNote">
                     </app-custom-progress-bar>
     
                 </p>

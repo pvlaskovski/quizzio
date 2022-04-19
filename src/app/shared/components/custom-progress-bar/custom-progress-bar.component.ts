@@ -9,8 +9,8 @@ export class CustomProgressBarComponent implements OnInit {
 
     @Input() bgColor: string = 'lightgray';
     @Input() barHeight: string = '5px';
-    @Input() barColor: string = 'green';
-    @Input() barWidth: string = '10%';
+    @Input() barColor: string = '#673ab7';
+    @Input() barWidth: number = 0;
     @Input() strenghtNote: string = '';
 
     constructor() { }
