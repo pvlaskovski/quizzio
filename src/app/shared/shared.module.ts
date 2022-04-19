@@ -3,16 +3,15 @@ import { CommonModule } from '@angular/common';
 import { CustomProgressBarComponent } from './components/custom-progress-bar/custom-progress-bar.component';
 
 
-
 @NgModule({
   declarations: [
-    CustomProgressBarComponent
+    CustomProgressBarComponent,
   ],
   imports: [
     CommonModule
   ],
   exports:[
-      CustomProgressBarComponent
+      CustomProgressBarComponent,      
   ]
 })
 export class SharedModule { }
