@@ -22,9 +22,14 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import {MatListModule} from '@angular/material/list'; 
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatSelectModule} from '@angular/material/select';
+import {MatRadioModule} from '@angular/material/radio';
+
+
 
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AddQuizzComponent } from './components/add-quizz/add-quizz.component';
 
 
 @NgModule({
@@ -34,6 +39,7 @@ import { ReactiveFormsModule } from '@angular/forms';
         LoginComponent,
         ProfileComponent,
         RegisterComponent,
+        AddQuizzComponent,
     ],
     imports: [
         CommonModule,
@@ -52,6 +58,8 @@ import { ReactiveFormsModule } from '@angular/forms';
         MatExpansionModule,
         MatProgressBarModule,
         AppRoutingModule,
+        MatSelectModule,
+        MatRadioModule,
     ],
     exports: [
         HeaderComponent,

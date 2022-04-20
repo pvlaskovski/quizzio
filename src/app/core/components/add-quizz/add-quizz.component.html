@@ -1,0 +1,65 @@
+<div class="quizz-data-container">
+
+    <mat-card class="quizz-data-section">
+        <mat-card-title>Add a quizz</mat-card-title>
+        <mat-card-content>
+            <p>
+                <mat-form-field appearance="fill">
+                    <mat-label>Quizz Title</mat-label>
+                    <mat-icon matPrefix>sentiment_very_satisfied</mat-icon>
+                    <input matInput placeholder="Add quizz title here" autocomplete="off">
+                    <mat-hint>Some usefull info</mat-hint>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="fill">
+                    <mat-label>Quizz Topic</mat-label>
+                    <mat-icon matPrefix>sentiment_very_satisfied</mat-icon>
+                    <input matInput placeholder="Add quizz topic here" autocomplete="off">
+                    <mat-hint>Some usefull info</mat-hint>
+                </mat-form-field>
+            </p>
+        </mat-card-content>
+
+        <mat-card-actions>
+            <button mat-raised-button color="primary">Save quizz</button>
+        </mat-card-actions>
+    </mat-card>
+
+    <!-- <mat-card class="quizz-data-section"> -->
+
+    <mat-tab-group mat-align-tabs="start" class="quizz-data-section">
+        <mat-tab label="True/False ">
+            <mat-accordion>
+                <p>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Question</mat-label>
+                        <mat-icon matPrefix>help_outline</mat-icon>
+                        <input matInput placeholder="Type your question here" autocomplete="off">
+                        <mat-hint>Some usefull info</mat-hint>
+                    </mat-form-field>
+                </p>
+                <p>Select the correct answer for this question.</p>
+                <p>
+                    <mat-radio-group aria-label="Select an option" class="true-false-buttons">
+                        <mat-radio-button value="1" color="accent">True</mat-radio-button>
+                        <mat-radio-button value="2" color="accent">False</mat-radio-button>
+                    </mat-radio-group>
+                </p>
+                <button mat-raised-button color="primary">Save questions</button>
+            </mat-accordion>      
+        </mat-tab>
+
+        <mat-tab label="Multiple choices">
+
+        </mat-tab>
+
+        <mat-tab label="Single choice">
+
+
+        </mat-tab>
+
+    </mat-tab-group>
+    <!-- </mat-card> -->
+
+</div>

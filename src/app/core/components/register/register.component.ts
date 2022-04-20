@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { stringsMatchValidator } from 'src/app/shared/validators/stringsMatchValidator';
@@ -11,9 +11,9 @@ import { stringsMatchValidator } from 'src/app/shared/validators/stringsMatchVal
 
 
 
-export class RegisterComponent implements OnInit, AfterViewInit {
+export class RegisterComponent implements OnInit {
 
-    lowPassRegex = new RegExp(/^.{4,}$/gm);
+    lowPassRegex = new RegExp(/^.{6,}$/gm);
     mediumPassRegex = new RegExp(/^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{6,}$/gm);
     strongPassRegex = /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$/gm;
 
@@ -42,6 +42,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     constructor(public authService: AuthService, private formBuilder: FormBuilder,) { }
 
     ngOnInit(): void {
+        // TODO: Password should contain at least 6 chars
 
         //Listen for password strenght and update strenght bar properties
         this.passwordsGroup.controls['password'].valueChanges.subscribe((value: string) => {
@@ -57,25 +58,31 @@ export class RegisterComponent implements OnInit, AfterViewInit {
                 this.passwordStrenghtMeter = 33;
                 this.passwordStrenghtColor = 'red';
                 this.passwordStrenghtNote = 'Weak';
-            } else if (value.length < 4) {
+            } else if (value.length < 6) {
                 this.passwordStrenghtMeter = 0;
                 this.passwordStrenghtNote = '';
             }
         })
     }
 
-    ngAfterViewInit(): void {
-        // console.log(this.form);
-        console.log('inint');
-    }
+    
 
     onSubmit(): void {
-        // TODO: check if PW and repeat PW match
         // TODO: display error if registration fails
         // TODO: return this email is already registered
-        console.log(this.registerForm.value);
-        // this.authService.register()
-        // this.isSuccesfullRegister = false;
+        // TODO: add toster messages for not succesfull logins and registration
+        let password = this.registerForm.value.passwords.password;
+        let rePassword = this.registerForm.value.passwords.rePassword;
+        let email = this.registerForm.value.email;
+
+        if(password === rePassword){
+            try {
+                this.authService.register(email, password);
+            } catch (error) {
+                this.isSuccesfullRegister = false;
+            }
+        }
+
     }
 
 
