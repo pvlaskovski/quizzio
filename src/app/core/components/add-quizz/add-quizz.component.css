@@ -1,5 +1,7 @@
 .quizz-data-container {
     display: flex;
+  align-items: start;
+  justify-content: star;
 }
 
 .quizz-data-section {
@@ -11,10 +13,11 @@ mat-form-field {
     width: 100%;
 }
 
-.mat-radio-button~.mat-radio-button {
+.mat-radio-button~.mat-radio-button,
+button {
     margin-left: 2em;
 }
 
-.true-false-buttons{
+.true-false-buttons {
     padding-left: 1em;
 }

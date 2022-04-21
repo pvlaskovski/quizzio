@@ -30,27 +30,62 @@
 
     <mat-tab-group mat-align-tabs="start" class="quizz-data-section">
         <mat-tab label="True/False ">
-            <mat-accordion>
-                <p>
-                    <mat-form-field appearance="fill">
-                        <mat-label>Question</mat-label>
-                        <mat-icon matPrefix>help_outline</mat-icon>
-                        <input matInput placeholder="Type your question here" autocomplete="off">
-                        <mat-hint>Some usefull info</mat-hint>
-                    </mat-form-field>
-                </p>
-                <p>Select the correct answer for this question.</p>
-                <p>
-                    <mat-radio-group aria-label="Select an option" class="true-false-buttons">
-                        <mat-radio-button value="1" color="accent">True</mat-radio-button>
-                        <mat-radio-button value="2" color="accent">False</mat-radio-button>
-                    </mat-radio-group>
-                </p>
-                <button mat-raised-button color="primary">Save questions</button>
-            </mat-accordion>      
+
+            <p>
+                <mat-form-field appearance="fill">
+                    <mat-label>Question</mat-label>
+                    <mat-icon matPrefix>help_outline</mat-icon>
+                    <input matInput placeholder="Type your question here" autocomplete="off">
+                    <mat-hint>Some usefull info</mat-hint>
+                </mat-form-field>
+            </p>
+            <p>Select the correct answer for this question.</p>
+            <p>
+                <mat-radio-group aria-label="Select an option" class="true-false-buttons">
+                    <mat-radio-button value="1" color="accent">True</mat-radio-button>
+                    <mat-radio-button value="2" color="accent">False</mat-radio-button>
+                </mat-radio-group>
+            </p>
+            <button mat-raised-button color="primary">Save questions</button>
+
         </mat-tab>
 
         <mat-tab label="Multiple choices">
+            <p>
+                <mat-form-field appearance="fill">
+                    <mat-label>Question</mat-label>
+                    <mat-icon matPrefix>help_outline</mat-icon>
+                    <input matInput placeholder="Type your question here" autocomplete="off" class="correct">
+                    <mat-hint>Some usefull info</mat-hint>
+                </mat-form-field>
+            </p>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Correct answer</mat-label>
+                <mat-icon matPrefix>done</mat-icon>
+                <input matInput placeholder="Type the correct answer here" autocomplete="off">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Distractor</mat-label>
+                <mat-icon matPrefix>close</mat-icon>
+                <input matInput placeholder="Type a distractor here" autocomplete="off">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Distractor</mat-label>
+                <mat-icon matPrefix>close</mat-icon>
+                <input matInput placeholder="Type a distractor here" autocomplete="off">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Distractor</mat-label>
+                <mat-icon matPrefix>close</mat-icon>
+                <input matInput placeholder="Type a distractor here" autocomplete="off">
+            </mat-form-field>
+
+            <button mat-raised-button color="primary">Add Distractor</button>
+            <button mat-raised-button color="primary">Save questions</button>
 
         </mat-tab>
 
