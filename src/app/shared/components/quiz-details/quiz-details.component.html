@@ -2,16 +2,13 @@
 <h4>Quizz topic: {{quiz.topic}}</h4>
 
 <mat-accordion *ngFor="let question of quiz.questions; let indexOfElement=index;">
-    <mat-expansion-panel hideToggle>
+    <mat-expansion-panel hideToggle  >
         <mat-expansion-panel-header>
             <mat-panel-title>
                 Question {{indexOfElement + 1}}
             </mat-panel-title>
             
-            <mat-action-row>
-                <button mat-button color="primary">Edit</button>
-                <button mat-button color="primary">Delete</button>
-            </mat-action-row>
+          
         </mat-expansion-panel-header>
 
         <!-- Display True/Fase Question -->
@@ -22,6 +19,10 @@
             <mat-radio-button value="true" color="accent">True</mat-radio-button>
             <mat-radio-button value="false" color="accent">False</mat-radio-button>
         </mat-radio-group>
+        <mat-action-row>
+            <button mat-button color="primary">Edit</button>
+            <button mat-button color="primary">Delete</button>
+        </mat-action-row>
         <!-- Display True/Fase Question -->
 
 
