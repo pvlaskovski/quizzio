@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, FormBuilder, FormArray, NgForm } fr
 import { stringsMatchValidator } from 'src/app/shared/validators/stringsMatchValidator';
 import { IQuiz } from '../../interfaces/quiz';
 import { IQuestion, QuestionTypes } from '../../interfaces/question';
+import { QuizService } from '../../services/quiz.service';
 
 @Component({
     selector: 'app-add-quizz',
@@ -45,16 +46,24 @@ export class AddQuizzComponent implements OnInit {
         questions: []
     };
 
-    constructor(private formBuilder: FormBuilder) { }
+    constructor(private formBuilder: FormBuilder, private quizService: QuizService) { }
 
     ngOnInit(): void {
     }
 
-    addBasicQuizInfo(form: NgForm): void {
+    saveQuiz(form: NgForm): void {
         const title: string = form.controls['title'].value;
         const topic: string = form.controls['topic'].value;
         this.newQuizz.title = title;
         this.newQuizz.topic = topic;
+
+        // console.log(this.newQuizz);
+
+        try {
+            this.quizService.addQuiz(this.newQuizz);
+        } catch (error) {
+            console.log(error);   
+        }
     }
 
     addTrueFalseQuestion(form: NgForm): void {
@@ -79,8 +88,12 @@ export class AddQuizzComponent implements OnInit {
             incorrectAnswers: [incorrectAnswer]
         }
 
-        console.log(newQuestion);
-        
+        this.newQuizz.questions.push(newQuestion);
+        form.reset();
     }
+
+    
+
+
 
 }
