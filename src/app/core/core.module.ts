@@ -30,6 +30,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddQuizzComponent } from './components/add-quizz/add-quizz.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { AddQuizzComponent } from './components/add-quizz/add-quizz.component';
         ProfileComponent,
         RegisterComponent,
         AddQuizzComponent,
+        HomeComponent,
     ],
     imports: [
         CommonModule,

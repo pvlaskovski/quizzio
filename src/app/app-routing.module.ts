@@ -7,8 +7,10 @@ import { LoginComponent } from './core/components/login/login.component';
 import { RegisterComponent } from './core/components/register/register.component';
 import { ProfileComponent } from './core/components/profile/profile.component';
 import { AddQuizzComponent } from './core/components/add-quizz/add-quizz.component';
+import { HomeComponent } from './core/components/home/home.component';
 
 const routes: Routes = [
+    { path: '', pathMatch: 'full', component: HomeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'profile', component: ProfileComponent },
