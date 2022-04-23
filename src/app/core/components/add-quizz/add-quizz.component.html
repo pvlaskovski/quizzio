@@ -2,7 +2,7 @@
 
     <!-- BASINC INFO SECTION -->
     <mat-card class="quizz-data-section">
-        <form #basicQuizInfo="ngForm">
+        <form #basicQuizInfo="ngForm" (ngSubmit)="saveQuiz(basicQuizInfo)">
             <mat-card-title>Add a quizz</mat-card-title>
             <mat-card-content>
                 <p>
@@ -28,8 +28,11 @@
             </mat-card-content>
 
             <mat-card-actions>
-                <button [disabled]="basicQuizInfo.invalid" mat-raised-button color="primary"
-                    (click)="addBasicQuizInfo(basicQuizInfo)">Save quiz</button>
+                <button 
+                    [disabled]="basicQuizInfo.invalid" mat-raised-button color="primary"
+                    type="submit"
+                >
+                    Save quiz</button>
             </mat-card-actions>
 
         </form>
@@ -110,3 +113,5 @@
 
     </mat-tab-group>
 </div>
+
+<app-quiz-details [quiz]="newQuizz"></app-quiz-details>
