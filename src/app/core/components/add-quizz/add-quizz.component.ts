@@ -89,10 +89,8 @@ export class AddQuizzComponent implements OnInit {
         }
 
         this.newQuizz.questions.push(newQuestion);
-        form.reset();
+        form.reset()
     }
-
-    
 
 
 
