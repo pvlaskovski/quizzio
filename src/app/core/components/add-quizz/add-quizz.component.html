@@ -1,56 +1,72 @@
 <div class="quizz-data-container">
 
+    <!-- BASINC INFO SECTION -->
     <mat-card class="quizz-data-section">
-        <mat-card-title>Add a quizz</mat-card-title>
-        <mat-card-content>
-            <p>
-                <mat-form-field appearance="fill">
-                    <mat-label>Quizz Title</mat-label>
-                    <mat-icon matPrefix>sentiment_very_satisfied</mat-icon>
-                    <input matInput placeholder="Add quizz title here" autocomplete="off">
-                    <mat-hint>Some usefull info</mat-hint>
-                </mat-form-field>
-            </p>
-            <p>
-                <mat-form-field appearance="fill">
-                    <mat-label>Quizz Topic</mat-label>
-                    <mat-icon matPrefix>sentiment_very_satisfied</mat-icon>
-                    <input matInput placeholder="Add quizz topic here" autocomplete="off">
-                    <mat-hint>Some usefull info</mat-hint>
-                </mat-form-field>
-            </p>
-        </mat-card-content>
+        <form #basicQuizInfo="ngForm">
+            <mat-card-title>Add a quizz</mat-card-title>
+            <mat-card-content>
+                <p>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Quizz Title</mat-label>
+                        <mat-icon matPrefix>sentiment_very_satisfied</mat-icon>
+                        <input ngModel required minlength="4" maxlength="80" name="title" matInput
+                            placeholder="Add quizz title here" autocomplete="off">
+                        <mat-hint>This will be the title of your quiz</mat-hint>
+                        <mat-error>Title is required and should be between 3 and 80 characters long</mat-error>
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Quizz Topic</mat-label>
+                        <mat-icon matPrefix>sentiment_very_satisfied</mat-icon>
+                        <input ngModel required minlength="4" maxlength="40" name="topic" matInput
+                            placeholder="Add quizz topic here" autocomplete="off">
+                        <mat-hint>This will be the topic of your quiz</mat-hint>
+                        <mat-error>Title is required and should be between 3 and 40 characters long</mat-error>
+                    </mat-form-field>
+                </p>
+            </mat-card-content>
 
-        <mat-card-actions>
-            <button mat-raised-button color="primary">Save quizz</button>
-        </mat-card-actions>
+            <mat-card-actions>
+                <button [disabled]="basicQuizInfo.invalid" mat-raised-button color="primary"
+                    (click)="addBasicQuizInfo(basicQuizInfo)">Save quiz</button>
+            </mat-card-actions>
+
+        </form>
     </mat-card>
 
-    <!-- <mat-card class="quizz-data-section"> -->
 
+    <!-- QUESTIONS SECTION -->
     <mat-tab-group mat-align-tabs="start" class="quizz-data-section">
+
+        <!-- Add True/False Question -->
         <mat-tab label="True/False ">
-
-            <p>
-                <mat-form-field appearance="fill">
-                    <mat-label>Question</mat-label>
-                    <mat-icon matPrefix>help_outline</mat-icon>
-                    <input matInput placeholder="Type your question here" autocomplete="off">
-                    <mat-hint>Some usefull info</mat-hint>
-                </mat-form-field>
-            </p>
-            <p>Select the correct answer for this question.</p>
-            <p>
-                <mat-radio-group aria-label="Select an option" class="true-false-buttons">
-                    <mat-radio-button value="1" color="accent">True</mat-radio-button>
-                    <mat-radio-button value="2" color="accent">False</mat-radio-button>
-                </mat-radio-group>
-            </p>
-            <button mat-raised-button color="primary">Save questions</button>
-
+            <form #trueFalseQuestion="ngForm">
+                <p>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Question</mat-label>
+                        <mat-icon matPrefix>help_outline</mat-icon>
+                        <input ngModel required minlength="10" name="question" matInput
+                            placeholder="Type your question here" autocomplete="off">
+                        <mat-error>The Question is required and should be minimum 10 characters long</mat-error>
+                    </mat-form-field>
+                </p>
+                <p>Select the correct answer for this question.</p>
+                <p>
+                    <mat-radio-group ngModel required name="radioControl" aria-label="Select an option"
+                        class="true-false-buttons">
+                        <mat-radio-button value="true" color="accent">True</mat-radio-button>
+                        <mat-radio-button value="false" color="accent">False</mat-radio-button>
+                    </mat-radio-group>
+                </p>
+                <button mat-raised-button color="primary" [disabled]="trueFalseQuestion.invalid" (click)="addTrueFalseQuestion(trueFalseQuestion)">Add
+                    questions</button>
+            </form>
         </mat-tab>
+        <!-- Add True/False Question -->
 
-        <mat-tab label="Multiple choices">
+        <!-- TODO: Expand Functionality with different type questions -->
+        <!-- <mat-tab label="Single answer">
             <p>
                 <mat-form-field appearance="fill">
                     <mat-label>Question</mat-label>
@@ -85,16 +101,12 @@
             </mat-form-field>
 
             <button mat-raised-button color="primary">Add Distractor</button>
-            <button mat-raised-button color="primary">Save questions</button>
+            <button mat-raised-button color="primary">Add questions</button>
 
-        </mat-tab>
+        </mat-tab> -->
 
-        <mat-tab label="Single choice">
-
-
-        </mat-tab>
+        <!-- <mat-tab label="Multiple choices">
+        </mat-tab> -->
 
     </mat-tab-group>
-    <!-- </mat-card> -->
-
 </div>

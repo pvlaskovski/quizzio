@@ -1,7 +1,6 @@
 .quizz-data-container {
     display: flex;
-  align-items: start;
-  justify-content: star;
+    justify-content: star;
 }
 
 .quizz-data-section {

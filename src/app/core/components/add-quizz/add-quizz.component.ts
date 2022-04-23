@@ -1,15 +1,86 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormBuilder, FormArray, NgForm } from '@angular/forms';
+import { stringsMatchValidator } from 'src/app/shared/validators/stringsMatchValidator';
+import { IQuiz } from '../../interfaces/quiz';
+import { IQuestion, QuestionTypes } from '../../interfaces/question';
 
 @Component({
-  selector: 'app-add-quizz',
-  templateUrl: './add-quizz.component.html',
-  styleUrls: ['./add-quizz.component.css']
+    selector: 'app-add-quizz',
+    templateUrl: './add-quizz.component.html',
+    styleUrls: ['./add-quizz.component.css']
 })
 export class AddQuizzComponent implements OnInit {
 
-  constructor() { }
+    // quizBasicInfoForm: FormGroup = this.formBuilder.group({
+    //     'quizTitle': ['', [Validators.required]],
+    //     'quizTopic': ['', Validators.required],
+    //     'questions': this.formBuilder.array([]),
+    // });
 
-  ngOnInit(): void {
-  }
+    // get questionsFromArray(): any{
+    //     return this.quizBasicInfoForm.get('questions') as FormArray;
+    // }
+
+    // question(): any{
+    //     return this.formBuilder.group({
+    //         question:this.formBuilder.control(''),
+    //     })
+    // }
+
+    // addControl(): void {
+    //     this.questionsFromArray.push(this.question);
+    // }
+
+    // remove(i: number): void{
+    //     this.questionsFromArray.remove(i);
+    // }
+
+    // formValue(): void{
+    //     console.log(this.quizBasicInfoForm.value);     
+    // }
+
+    newQuizz: IQuiz = {
+        title: '',
+        topic: '',
+        questions: []
+    };
+
+    constructor(private formBuilder: FormBuilder) { }
+
+    ngOnInit(): void {
+    }
+
+    addBasicQuizInfo(form: NgForm): void {
+        const title: string = form.controls['title'].value;
+        const topic: string = form.controls['topic'].value;
+        this.newQuizz.title = title;
+        this.newQuizz.topic = topic;
+    }
+
+    addTrueFalseQuestion(form: NgForm): void {
+        const question: string = form.controls['question'].value;
+        const selectedRadioButtonValue: string = form.controls['radioControl'].value;
+
+        let correctAnswer: string;
+        let incorrectAnswer: string;
+
+        if (selectedRadioButtonValue == 'true') {
+            correctAnswer = 'true';
+            incorrectAnswer = 'false';
+        } else {
+            correctAnswer = 'false';
+            incorrectAnswer = 'true';
+        }
+
+        const newQuestion = {
+            question: question,
+            type: QuestionTypes['true-false'],
+            correctAnswers: [correctAnswer],
+            incorrectAnswers: [incorrectAnswer]
+        }
+
+        console.log(newQuestion);
+        
+    }
 
 }
