@@ -14,12 +14,12 @@
             Quizzes
         </a>
 
-        <a routerLink="/add-quizz" mat-button class="header-menu-button" aria-label="Button to open quizz page">
+        <a *ngIf="isLoggedIn" routerLink="/add-quizz" mat-button class="header-menu-button" aria-label="Button to open quizz page">
             <mat-icon>edit_note</mat-icon>
             Create a quizz
         </a>
 
-        <a routerLink="/profile" mat-button class="header-menu-button" aria-label="Button to open profile page">
+        <a *ngIf="isLoggedIn" routerLink="/profile" mat-button class="header-menu-button" aria-label="Button to open profile page">
             <mat-icon>person</mat-icon>
             Profile
         </a>
@@ -29,7 +29,7 @@
             Login
         </a>
 
-        <a routerLink="/logout" mat-button class="header-menu-button" aria-label="Button to logout">
+        <a *ngIf="isLoggedIn" routerLink="/logout" mat-button class="header-menu-button" aria-label="Button to logout">
             <mat-icon>logout</mat-icon>
             Logout
         </a>
