@@ -1,2 +1,17 @@
-<p>home works!</p>
-<p>{{quizzes | json}}</p>
+<div class="grid-container">
+    
+    <mat-card class="quiz-card" *ngFor="let quiz of quizzes">
+        <mat-card-content [routerLink]="['quiz/', quiz.id]">
+            <img mat-card-image src="https://cdn.pixabay.com/photo/2017/03/02/09/26/question-mark-2110767__340.jpg">
+            <h2>Title: {{quiz.title}}</h2>
+            <h3>Topic: {{quiz.topic}}</h3>
+            <span>Number of questions: {{quiz.questions.length}}</span>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button>LIKE</button>
+            <button mat-button>SHARE</button>
+            <button mat-button>Favorites</button>
+        </mat-card-actions>
+    </mat-card>
+
+</div>
