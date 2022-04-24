@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { map } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({
@@ -11,16 +12,19 @@ export class OnlyLoggedInUsersGuard implements CanActivate {
     constructor(private authService: AuthService, private router: Router) { }
 
     canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): boolean | UrlTree {
+        route: ActivatedRouteSnapshot,
+        state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+   
+        return this.authService.isLoggedIn().pipe(
+            map(e => {
+                if (e) {
+                    return true;
+                } else {
+                    this.router.navigate(['/login']);
+                    return false 
+                }
+            }),
+        )
 
-        let isLogged: boolean = this.authService.isLoggedIn;
-
-        if (isLogged) {
-            return true;
-        }
-
-        return this.router.createUrlTree(['/login']);
     }
-
 }
