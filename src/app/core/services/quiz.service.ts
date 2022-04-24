@@ -41,18 +41,16 @@ export class QuizService {
         )
     }
 
-
+    getQuizzesByUserId(userId: string): Observable<any> {
+        return this.db.collection('quizzes', ref => ref.where('creatorId', '==', userId)).snapshotChanges().pipe(
+            map(changes =>
+                changes.map(c => {
+                    const data = c.payload.doc.data() as IQuiz;
+                    data.id = c.payload.doc.id;
+                    return data;
+                })
+            )
+        )
+    }
 
 }
-
- // async addRecipe() {
-
-    //     try {
-    //         const docRef = await addDoc(collection(db, "recepies"), data);
-    //         // console.log("Document written with ID: ", docRef.id);
-    //     } catch (e) {
-    //         console.error("Error adding document: ", e);
-    //         throw "Error adding recipe";
-    //     }
-    //     // Add a new document in collection "recepies"
-    // }
