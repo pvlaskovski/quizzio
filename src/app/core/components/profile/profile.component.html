@@ -1,13 +1,9 @@
 <mat-card>
-    <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
-
     <mat-card-title>My profile page</mat-card-title>
-
+    <mat-icon mat-card-avatar color="primary">account_circle</mat-icon>
     <mat-card-content>
-        <p>First name:</p>
-        <p>Last name: </p>
-        <p>Nickname: </p>
-        <p>Email: </p>
+        <p *ngIf="user?.displayName">Name: {{user?.displayName}}</p>
+        <p *ngIf="user?.email">Email: {{user?.email}}</p>
     </mat-card-content>
 
     <mat-card-actions>
@@ -21,25 +17,12 @@
 <mat-tab-group mat-align-tabs="start">
     <mat-tab label="My quizzes">
         <!-- TODO: Page if no quizzes -->
-
-        <mat-accordion *ngFor="let quizz of quizzes">
-            <mat-expansion-panel hideToggle>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        {{quizz.title}}
-                    </mat-panel-title>
-                    <mat-panel-description>
-                        <!-- This is a summary of the content -->
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
-
-                <p>{{quizz.questions}}</p>
-
-                <mat-action-row>
-                    <button mat-button color="primary">Edit</button>
-                </mat-action-row>
-            </mat-expansion-panel>
-        </mat-accordion>
+        <mat-nav-list *ngFor="let quiz of quizzes">
+            <mat-list-item [routerLink]="['quiz/', quiz?.id]" >
+                <mat-icon matListIcon>quiz</mat-icon>
+                <p>{{quiz?.title}}</p>
+            </mat-list-item>
+        </mat-nav-list>
 
     </mat-tab>
 
@@ -47,9 +30,9 @@
         <!-- TODO: Page if no quizzes -->
         Favorite quizess
 
-        <mat-nav-list *ngFor="let quizz of quizzes">
+        <mat-nav-list *ngFor="let quiz of quizzes">
             <mat-list-item>
-                <a matLine href="#">{{quizz.title}}</a>
+                <a matLine href="#">{{quiz.title}}</a>
             </mat-list-item>
         </mat-nav-list>
     </mat-tab>

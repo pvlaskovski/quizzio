@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { IUser } from '../../interfaces/iuser';
+import { IQuiz } from '../../interfaces/quiz';
+import { QuizService } from '../../services/quiz.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
     selector: 'app-profile',
@@ -7,22 +11,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-    quizzes: any = [
-        {
-            'title': 'Some title 1',
-            'questions': 'some questions 1'
-        },
-        {
-            'title': 'Some title 2',
-            'questions': 'some questions 2'
-        },
-    ];
+    quizzes: IQuiz[] | undefined;
 
     panelOpenState: boolean = false;
+    user: IUser | undefined;
 
-    constructor() { }
+    constructor(private userService: UserService, private quizService: QuizService) { }
 
     ngOnInit(): void {
-    }
+        this.user = JSON.parse(localStorage.getItem("user") || "");
 
+        this.quizService.getQuizzesByUserId(this.user?.uid || "").subscribe(value=>{
+            console.log(value);
+            this.quizzes = value;
+        })
+
+    }
 }
