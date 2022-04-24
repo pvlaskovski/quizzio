@@ -1,3 +1,7 @@
 .mat-action-row{
     padding: 0;
 }
+
+.wrapper{
+    height: auto !important;
+}
