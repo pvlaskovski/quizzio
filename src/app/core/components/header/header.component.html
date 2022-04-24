@@ -24,17 +24,17 @@
             Profile
         </a>
 
-        <a routerLink="/login" mat-button class="header-menu-button" aria-label="Button to open login page">
+        <a *ngIf="!isLoggedIn" routerLink="/login" mat-button class="header-menu-button" aria-label="Button to open login page">
             <mat-icon>login</mat-icon>
             Login
         </a>
 
-        <a *ngIf="isLoggedIn" routerLink="/logout" mat-button class="header-menu-button" aria-label="Button to logout">
+        <a *ngIf="isLoggedIn" href="#" (click)="handleLogout()" mat-button class="header-menu-button" aria-label="Button to logout">
             <mat-icon>logout</mat-icon>
             Logout
         </a>
 
-        <a routerLink="/register" mat-button class="header-menu-button" aria-label="Button to open register page">
+        <a *ngIf="!isLoggedIn" routerLink="/register" mat-button class="header-menu-button" aria-label="Button to open register page">
             <mat-icon>how_to_reg</mat-icon>
             Register
         </a>
