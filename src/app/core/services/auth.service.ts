@@ -58,6 +58,7 @@ export class AuthService {
             .createUserWithEmailAndPassword(email, password)
             .then((result) => {
                 this.SetUserData(result.user);
+                this.router.navigate(['/']);
             })
             .catch((error) => {
                 window.alert(error.message);
@@ -77,9 +78,13 @@ export class AuthService {
     }
 
     // Returns true when user is looged in and email is verified
-    get isLoggedIn(): boolean {
-        const user = JSON.parse(localStorage.getItem('user')!);
-        return user !== null && user.emailVerified !== false ? true : false;  
+    // get isLoggedIn(): boolean {
+    //     const user = JSON.parse(localStorage.getItem('user')!);
+    //     return user !== null && user.emailVerified !== false ? true : false;  
+    // }
+
+    isLoggedIn(){
+        return this.afAuth.user;
     }
 
     /* Setting up user data when sign in with username/password, 
