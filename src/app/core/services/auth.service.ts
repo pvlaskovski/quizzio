@@ -97,9 +97,10 @@ export class AuthService {
         const userData: IUser = {
             uid: user.uid,
             email: user.email,
-            displayName: user.displayName,
-            photoURL: user.photoURL,
+            displayName: user?.displayName,
+            photoURL: user?.photoURL,
             emailVerified: user.emailVerified,
+            favoriteQuizzes: [],
         };
         return userRef.set(userData, {
             merge: true,

@@ -41,6 +41,17 @@ export class QuizService {
         )
     }
 
+    getQuizByQuizId(quizId: string): Observable<IQuiz> {
+        return this.db.doc(`quizzes/${quizId}`).snapshotChanges().pipe(
+            map(changes => {
+                const data = changes.payload.data() as IQuiz;
+                data.id = changes.payload.id;
+                return data;
+            })
+        )
+    }
+
+
     getQuizzesByUserId(userId: string): Observable<any> {
         return this.db.collection('quizzes', ref => ref.where('creatorId', '==', userId)).snapshotChanges().pipe(
             map(changes =>

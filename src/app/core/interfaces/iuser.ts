@@ -6,5 +6,5 @@ export interface IUser {
     displayName: string;
     photoURL: string;
     emailVerified: boolean;
-    favoriteQuizzes?: IQuiz[]
+    favoriteQuizzes?: string[];
 }
