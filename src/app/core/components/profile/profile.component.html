@@ -2,8 +2,8 @@
     <mat-card-title>My profile page</mat-card-title>
     <mat-icon mat-card-avatar color="primary">account_circle</mat-icon>
     <mat-card-content>
-        <p *ngIf="user?.displayName">Name: {{user?.displayName}}</p>
-        <p *ngIf="user?.email">Email: {{user?.email}}</p>
+        <p *ngIf="localUser?.displayName">Name: {{localUser?.displayName}}</p>
+        <p *ngIf="localUser?.email">Email: {{localUser?.email}}</p>
     </mat-card-content>
 
     <mat-card-actions>
@@ -28,11 +28,10 @@
 
     <mat-tab label="Favorite quizess">
         <!-- TODO: Page if no quizzes -->
-        Favorite quizess
-
         <mat-nav-list *ngFor="let quiz of favQuizzes">
-            <mat-list-item>
-                <a matLine href="#">{{quiz.title}}</a>
+            <mat-list-item [routerLink]="['quiz/', quiz?.id]">
+                <mat-icon matListIcon>star</mat-icon>
+                <p>{{quiz.title}}</p>
             </mat-list-item>
         </mat-nav-list>
     </mat-tab>

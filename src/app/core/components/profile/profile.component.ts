@@ -1,6 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { map } from '@firebase/util';
-import { mergeMap, tap } from 'rxjs';
+import { mergeMap, tap, firstValueFrom } from 'rxjs';
 import { IUser } from '../../interfaces/iuser';
 import { IQuiz } from '../../interfaces/quiz';
 import { QuizService } from '../../services/quiz.service';
@@ -28,11 +27,17 @@ export class ProfileComponent implements OnInit {
         this.localUser = JSON.parse(localStorage.getItem("user") || "");
 
         this.quizService.getQuizzesByUserId(this.localUser?.uid || "").subscribe(value => {
-            // console.log(value);
             this.quizzes = value;
         })
 
-
-
+        const userPromise = firstValueFrom(this.userService.getUserById(this.localUser?.uid || ''));
+        userPromise.then(user => {
+            user.favoriteQuizzes?.forEach(id => {
+                this.quizService.getQuizByQuizId(id).subscribe(quiz => {
+                    this.favQuizzes = this.favQuizzes.filter(x => x.id?.toString() !== quiz.id?.toString());
+                    this.favQuizzes.push(quiz);
+                })
+            })
+        })
     }
 }
