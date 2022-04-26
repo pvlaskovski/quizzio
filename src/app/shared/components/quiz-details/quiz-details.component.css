@@ -1,7 +1,20 @@
-.mat-action-row{
+.mat-action-row {
     padding: 0;
 }
 
-.wrapper{
+.wrapper {
     height: auto !important;
+}
+
+.mat-radio-button~.mat-radio-button,
+button {
+    margin-left: 2em;
+}
+
+.true-false-buttons {
+    padding-left: 1em;
+}
+
+mat-form-field {
+    width: 100%;
 }

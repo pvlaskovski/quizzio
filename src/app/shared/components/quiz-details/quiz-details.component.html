@@ -1,8 +1,8 @@
-<h2>Quizz name: {{quiz.title}}</h2>
-<h4>Quizz topic: {{quiz.topic}}</h4>
+<h2>Quizz name: {{quiz?.title}}</h2>
+<h4>Quizz topic: {{quiz?.topic}}</h4>
 
-<mat-accordion *ngFor="let question of quiz.questions; let indexOfElement=index;">
-    <mat-expansion-panel hideToggle  >
+<mat-accordion *ngFor="let question of quiz?.questions; let indexOfElement=index;">
+    <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header>
             <mat-panel-title>
                 Question {{indexOfElement + 1}}
@@ -11,15 +11,32 @@
 
         <!-- Display True/Fase Question -->
 
-        <p>
-            Question: {{question.question}}
-        </p>
-        
-        <mat-radio-group name="radioControl" aria-label="Select an option" class="true-false-buttons">
+
+        <ng-container *ngIf="!isInEditMode">
+            <p>
+                Question: {{question.question}}
+            </p>
+        </ng-container>
+
+        <ng-container *ngIf="isInEditMode">
+            <p>
+                <mat-form-field appearance="fill">
+                    <mat-label>Question</mat-label>
+                    <mat-icon matPrefix>help_outline</mat-icon>
+                    <input ngModel required minlength="10" name="question" matInput placeholder="Type your question here"
+                        autocomplete="off">
+                    <mat-error>The Question is required and should be minimum 10 characters long</mat-error>
+                </mat-form-field>
+            </p>
+            <p>Select the correct answer for this question.</p>
+        </ng-container>
+
+        <mat-radio-group aria-label="Select an option" class="true-false-buttons">
             <mat-radio-button value="true" color="accent">True</mat-radio-button>
             <mat-radio-button value="false" color="accent">False</mat-radio-button>
         </mat-radio-group>
-        
+
+
         <mat-action-row>
             <button (click)="toggleEditMode()" mat-button color="primary">Edit</button>
             <button (click)="deleteQuestion(indexOfElement)" mat-button color="primary">Delete</button>
