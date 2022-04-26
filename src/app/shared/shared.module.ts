@@ -7,6 +7,7 @@ import { QuizDetailsComponent } from './components/quiz-details/quiz-details.com
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonModule} from '@angular/material/button';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 
@@ -21,6 +22,7 @@ import {MatRadioModule} from '@angular/material/radio';
     MatExpansionModule,
     MatButtonModule,
     MatRadioModule,
+    MatFormFieldModule,
   ],
   exports:[
       CustomProgressBarComponent,      

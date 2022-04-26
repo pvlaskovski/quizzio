@@ -7,21 +7,22 @@
             <mat-panel-title>
                 Question {{indexOfElement + 1}}
             </mat-panel-title>
-            
-          
         </mat-expansion-panel-header>
 
         <!-- Display True/Fase Question -->
+
         <p>
             Question: {{question.question}}
         </p>
+        
         <mat-radio-group name="radioControl" aria-label="Select an option" class="true-false-buttons">
             <mat-radio-button value="true" color="accent">True</mat-radio-button>
             <mat-radio-button value="false" color="accent">False</mat-radio-button>
         </mat-radio-group>
+        
         <mat-action-row>
-            <button mat-button color="primary">Edit</button>
-            <button mat-button color="primary">Delete</button>
+            <button (click)="toggleEditMode()" mat-button color="primary">Edit</button>
+            <button (click)="deleteQuestion(indexOfElement)" mat-button color="primary">Delete</button>
         </mat-action-row>
         <!-- Display True/Fase Question -->
 
