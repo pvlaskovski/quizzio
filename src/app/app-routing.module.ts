@@ -9,11 +9,13 @@ import { ProfileComponent } from './core/components/profile/profile.component';
 import { AddQuizzComponent } from './core/components/add-quizz/add-quizz.component';
 import { HomeComponent } from './core/components/home/home.component';
 import { OnlyLoggedInUsersGuard } from './core/guards/only-logged-in-users.guard';
+import { TakeQuizComponent } from './core/components/take-quiz/take-quiz.component';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', component: HomeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
+    { path: 'take-quiz/:id', component: TakeQuizComponent },
     { path: 'profile', canActivate: [OnlyLoggedInUsersGuard], component: ProfileComponent },
     { path: 'add-quizz', canActivate: [OnlyLoggedInUsersGuard], component: AddQuizzComponent },
 ];

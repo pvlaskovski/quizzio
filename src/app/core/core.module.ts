@@ -31,6 +31,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddQuizzComponent } from './components/add-quizz/add-quizz.component';
 import { HomeComponent } from './components/home/home.component';
+import { TakeQuizComponent } from './components/take-quiz/take-quiz.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { HomeComponent } from './components/home/home.component';
         RegisterComponent,
         AddQuizzComponent,
         HomeComponent,
+        TakeQuizComponent,
     ],
     imports: [
         CommonModule,
