@@ -25,6 +25,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 import { FormsModule } from '@angular/forms';
@@ -64,6 +65,7 @@ import { TakeQuizComponent } from './components/take-quiz/take-quiz.component';
         AppRoutingModule,
         MatSelectModule,
         MatRadioModule,
+        MatDialogModule,
     ],
     exports: [
         HeaderComponent,
@@ -71,6 +73,9 @@ import { TakeQuizComponent } from './components/take-quiz/take-quiz.component';
         LoginComponent,
         ProfileComponent,
         RegisterComponent,
+    ],
+    providers:[
+        
     ]
 })
 export class CoreModule { }

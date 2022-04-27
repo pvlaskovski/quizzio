@@ -1,7 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { IQuestion } from 'src/app/core/interfaces/question';
 import { IQuiz } from 'src/app/core/interfaces/quiz';
+
+import { QuizResultDialogComponent } from '../quiz-result-dialog/quiz-result-dialog.component';
+
 
 
 @Component({
@@ -11,7 +15,7 @@ import { IQuiz } from 'src/app/core/interfaces/quiz';
 })
 export class QuizDetailsComponent implements OnInit {
 
-    constructor(private formBuilder: FormBuilder) { }
+    constructor(private formBuilder: FormBuilder, private dialog: MatDialog) { }
 
     @Input() quiz!: IQuiz;
 
@@ -34,6 +38,9 @@ export class QuizDetailsComponent implements OnInit {
         }
     }
 
+    openDialog(): void {
+        this.dialog.open(QuizResultDialogComponent);
+    }
 
 
     submitQuiz(): void {
@@ -65,14 +72,18 @@ export class QuizDetailsComponent implements OnInit {
             } else {
                 // TODO: for multiple choice questions
             }
-
-
         }
+
 
         console.log('GIVEN ANSERS ARE: => ' + givenAnswers);
         console.log('CORRECRT ANSWERS GIVEN ARE: => ' + correctAnswers);
         console.log('INCORRECT ANSWERS GIVEN ARE: - > ' + incorrectAnswers);
 
+        this.openDialog();
+
     }
+
+    
+
 
 }
