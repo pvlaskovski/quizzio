@@ -1,5 +1,10 @@
-<h1 mat-dialog-title>Dialog with elements</h1>
-<div mat-dialog-content>This dialog showcases the title, close, content and actions elements.</div>
+<h1 mat-dialog-title>Your Test results</h1>
+<div mat-dialog-content>
+    <p *ngIf="+data.correctAnswers > (+data.allAnswers/2)">Well done!</p>
+    <p *ngIf="+data.correctAnswers <= (+data.allAnswers/2)">Try again!</p>
+    <p>You answered {{data.correctAnswers}} out of {{data.allAnswers}} answers correctly!</p>
+</div>
+
 <div mat-dialog-actions>
-    <button mat-button mat-dialog-close>Close</button>
+    <button (click)="handleDialogClick()" mat-button mat-dialog-close>Back to quizzes</button>
 </div>

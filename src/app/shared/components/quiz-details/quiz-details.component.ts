@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { IQuestion } from 'src/app/core/interfaces/question';
 import { IQuiz } from 'src/app/core/interfaces/quiz';
 
@@ -19,8 +19,8 @@ export class QuizDetailsComponent implements OnInit {
 
     @Input() quiz!: IQuiz;
 
-
     isInEditMode: boolean = false;
+    correctAnswers: string[] = [];
 
     ngOnInit(): void {
     }
@@ -38,18 +38,14 @@ export class QuizDetailsComponent implements OnInit {
         }
     }
 
-    openDialog(): void {
-        this.dialog.open(QuizResultDialogComponent);
-    }
-
-
     submitQuiz(): void {
         console.log('form submitted');
         // console.log(this.quiz);
         let myForm = document.getElementById('myForm');
         let formData = new FormData(myForm as any);
 
-        let correctAnswers = [];
+        // let correctAnswers = [];
+        this.correctAnswers = [];
         let incorrectAnswers = [];
         let givenAnswers = [];
 
@@ -65,7 +61,7 @@ export class QuizDetailsComponent implements OnInit {
             if (questionCorrectAnswers.length === 1) {
                 const isCorrect = currentAnswer?.toString() === questionCorrectAnswers[0].toString();
                 if (isCorrect) {
-                    correctAnswers.push(index.toString());
+                    this.correctAnswers.push(index.toString());
                 } else {
                     incorrectAnswers.push(index.toString());
                 }
@@ -76,14 +72,28 @@ export class QuizDetailsComponent implements OnInit {
 
 
         console.log('GIVEN ANSERS ARE: => ' + givenAnswers);
-        console.log('CORRECRT ANSWERS GIVEN ARE: => ' + correctAnswers);
+        console.log('CORRECRT ANSWERS GIVEN ARE: => ' + this.correctAnswers);
         console.log('INCORRECT ANSWERS GIVEN ARE: - > ' + incorrectAnswers);
 
         this.openDialog();
 
     }
 
-    
+
+    openDialog(): void {
+        const dialogConfig = new MatDialogConfig();
+        dialogConfig.disableClose = true;
+        dialogConfig.autoFocus = true;
+
+        dialogConfig.data = {
+            correctAnswers: this.correctAnswers.length,
+            allAnswers: this.quiz.questions.length,
+        };
+
+        this.dialog.open(QuizResultDialogComponent, dialogConfig);
+    }
+
+
 
 
 }
