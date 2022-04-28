@@ -32,21 +32,21 @@ export class QuizDetailsComponent implements OnInit {
     }
 
     deleteQuestion(index: number) {
+        const dialogData = { text: 'Are you sure you want to delete this question?' };
+        const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+            data: dialogData,
+        });
 
-        const dialogRef = this.dialog.open(ConfirmationDialogComponent);
-        dialogRef.afterClosed().subscribe(isConfirmed=>{
-
-            if(isConfirmed){
+        dialogRef.afterClosed().subscribe(isConfirmed => {
+            if (isConfirmed) {
                 if (index > -1 && index < this.quiz.questions.length) {
                     this.quiz.questions.splice(index, 1)
                 } else {
                     console.log('Index out of bounds');
                 }
-            }else{
+            } else {
                 dialogRef.close();
             }
-
-
         })
 
     }
