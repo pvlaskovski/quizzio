@@ -3,8 +3,13 @@
 
 <form (ngSubmit)="submitQuiz()" id="myForm">
     <ng-container>
-        <mat-accordion *ngFor="let question of quiz?.questions; let indexOfElement=index;">
-            <mat-expansion-panel hideToggle>
+        <div class="example-action-buttons">
+            <button mat-button type="button" (click)="accordion.openAll()">Expand All</button>
+            <button mat-button type="button" (click)="accordion.closeAll()">Collapse All</button>
+        </div>
+        
+        <mat-accordion  multi>
+            <mat-expansion-panel *ngFor="let question of quiz?.questions; let indexOfElement=index;" hideToggle>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         Question {{indexOfElement + 1}}
@@ -12,8 +17,6 @@
                 </mat-expansion-panel-header>
 
                 <!-- Display True/Fase Question -->
-
-
                 <ng-container *ngIf="!isInEditMode">
                     <p>
                         Question: {{question.question}}

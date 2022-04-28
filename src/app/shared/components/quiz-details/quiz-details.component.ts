@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatAccordion } from '@angular/material/expansion';
 import { IQuestion } from 'src/app/core/interfaces/question';
 import { IQuiz } from 'src/app/core/interfaces/quiz';
 
@@ -16,7 +17,7 @@ import { QuizResultDialogComponent } from '../quiz-result-dialog/quiz-result-dia
 export class QuizDetailsComponent implements OnInit {
 
     constructor(private formBuilder: FormBuilder, private dialog: MatDialog) { }
-
+    @ViewChild(MatAccordion) accordion!: MatAccordion;
     @Input() quiz!: IQuiz;
 
     isInEditMode: boolean = false;
