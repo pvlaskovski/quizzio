@@ -70,13 +70,11 @@ export class QuizDetailsComponent implements OnInit {
             }
         }
 
-
-        console.log('GIVEN ANSERS ARE: => ' + givenAnswers);
-        console.log('CORRECRT ANSWERS GIVEN ARE: => ' + this.correctAnswers);
-        console.log('INCORRECT ANSWERS GIVEN ARE: - > ' + incorrectAnswers);
+        // console.log('GIVEN ANSERS ARE: => ' + givenAnswers);
+        // console.log('CORRECRT ANSWERS GIVEN ARE: => ' + this.correctAnswers);
+        // console.log('INCORRECT ANSWERS GIVEN ARE: - > ' + incorrectAnswers);
 
         this.openDialog();
-
     }
 
 
@@ -92,8 +90,5 @@ export class QuizDetailsComponent implements OnInit {
 
         this.dialog.open(QuizResultDialogComponent, dialogConfig);
     }
-
-
-
 
 }

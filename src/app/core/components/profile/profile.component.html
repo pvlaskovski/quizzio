@@ -18,7 +18,9 @@
     <mat-tab label="My quizzes">
         <!-- TODO: Page if no quizzes -->
         <mat-nav-list *ngFor="let quiz of quizzes">
-            <mat-list-item [routerLink]="['quiz/', quiz?.id]" >
+            <mat-list-item [routerLink]="['/take-quiz/', quiz?.id]"  
+            
+            >
                 <mat-icon matListIcon>quiz</mat-icon>
                 <p>{{quiz?.title}}</p>
             </mat-list-item>
