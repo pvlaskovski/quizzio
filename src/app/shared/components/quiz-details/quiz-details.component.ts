@@ -4,6 +4,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatAccordion } from '@angular/material/expansion';
 import { IQuestion } from 'src/app/core/interfaces/question';
 import { IQuiz } from 'src/app/core/interfaces/quiz';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 import { QuizResultDialogComponent } from '../quiz-result-dialog/quiz-result-dialog.component';
 
@@ -31,12 +32,23 @@ export class QuizDetailsComponent implements OnInit {
     }
 
     deleteQuestion(index: number) {
-        if (index > -1 && index < this.quiz.questions.length) {
-            this.quiz.questions.splice(index, 1)
-        } else {
-            console.log('Index out of bounds');
 
-        }
+        const dialogRef = this.dialog.open(ConfirmationDialogComponent);
+        dialogRef.afterClosed().subscribe(isConfirmed=>{
+
+            if(isConfirmed){
+                if (index > -1 && index < this.quiz.questions.length) {
+                    this.quiz.questions.splice(index, 1)
+                } else {
+                    console.log('Index out of bounds');
+                }
+            }else{
+                dialogRef.close();
+            }
+
+
+        })
+
     }
 
     submitQuiz(): void {
@@ -91,5 +103,7 @@ export class QuizDetailsComponent implements OnInit {
 
         this.dialog.open(QuizResultDialogComponent, dialogConfig);
     }
+
+
 
 }
