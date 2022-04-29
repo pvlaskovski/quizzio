@@ -1,3 +1,8 @@
+h1, h2, h3, h4, h5, h6{
+    text-align: center;
+}
+
+
 .mat-action-row {
     padding: 0;
 }
@@ -6,9 +11,8 @@
     height: auto !important;
 }
 
-.mat-radio-button~.mat-radio-button,
-button {
-    margin-left: 2em;
+.mat-radio-button~.mat-radio-button{
+    padding-left: 2em;
 }
 
 .true-false-buttons {
@@ -18,3 +22,13 @@ button {
 mat-form-field {
     width: 100%;
 }
+
+button[type=submit]{
+    display: block;
+    margin: auto;
+    margin-top: 1em;
+    text-align: center;
+}
+
+
+

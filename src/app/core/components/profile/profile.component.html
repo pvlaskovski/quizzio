@@ -1,7 +1,7 @@
-<mat-card>
+<mat-card class="profile-container">
     <mat-card-title>My profile page</mat-card-title>
     <mat-icon mat-card-avatar color="primary">account_circle</mat-icon>
-    <mat-card-content>
+    <mat-card-content class="profile-info">
         <p *ngIf="localUser?.displayName">Name: {{localUser?.displayName}}</p>
         <p *ngIf="localUser?.email">Email: {{localUser?.email}}</p>
     </mat-card-content>
@@ -10,8 +10,6 @@
 
         <button mat-button>Edit Profile</button>
     </mat-card-actions>
-
-
 </mat-card>
 
 <mat-tab-group mat-align-tabs="start">
@@ -23,7 +21,6 @@
                 <p>{{quiz?.title}}</p>
             </mat-list-item>
         </mat-nav-list>
-
     </mat-tab>
 
     <mat-tab label="Favorite quizess">

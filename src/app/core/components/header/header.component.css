@@ -1,5 +1,6 @@
 .header{
     height: auto;
+    padding: 0.5em 0;
 }
 
 mat-toolbar{

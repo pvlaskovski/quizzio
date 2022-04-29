@@ -3,3 +3,7 @@ mat-icon.mat-card-avatar {
     height: 50px;
     font-size: 50px;
 }
+
+.profile-container{
+    text-align: center;
+}
