@@ -2,14 +2,16 @@
     <mat-card class="quiz-card" *ngFor="let quiz of quizzes">
         <mat-card-content [routerLink]="['take-quiz', quiz.id]">
             <img mat-card-image src="https://cdn.pixabay.com/photo/2017/03/02/09/26/question-mark-2110767__340.jpg">
-            <h2>Title: {{quiz.title}}</h2>
+            <h2>Title: {{quiz.title}} 
+                <mat-icon *ngIf="currentUserFavQuizzes?.includes(quiz.id || '')" aria-hidden="false" aria-label="Favorite icon" class="fav-icon">star</mat-icon>
+            </h2>
             <h3>Topic: {{quiz.topic}}</h3>
             <span>Number of questions: {{quiz.questions.length}}</span>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-button>LIKE</button>
-            <button mat-button>SHARE</button>
-            <button mat-button>Favorites</button>
+            <button mat-button (click)="copyLink(quiz.id!)">Share</button>
+            <button *ngIf="!currentUserFavQuizzes?.includes(quiz.id || '')" mat-button (click)="addToFavorite(currentUser!.uid, quiz.id!)">Like</button>
+            <button *ngIf="currentUserFavQuizzes?.includes(quiz.id || '')" mat-button (click)="removeFromFavorite(currentUser!.uid, quiz.id!)">Dislike</button>
         </mat-card-actions>
     </mat-card>
 

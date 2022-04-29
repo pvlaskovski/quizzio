@@ -21,3 +21,8 @@ mat-card-image {
 mat-card-content {
     cursor: pointer;
 }
+
+.fav-icon{
+    color: goldenrod;
+    font-size: inherit;
+}
