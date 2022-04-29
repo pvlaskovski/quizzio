@@ -5,6 +5,9 @@ import { IQuiz } from '../../interfaces/quiz';
 import { IQuestion, QuestionTypes } from '../../interfaces/question';
 import { QuizService } from '../../services/quiz.service';
 import { IUser } from '../../interfaces/iuser';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
     selector: 'app-add-quizz',
@@ -12,47 +15,17 @@ import { IUser } from '../../interfaces/iuser';
     styleUrls: ['./add-quizz.component.css']
 })
 export class AddQuizzComponent implements OnInit {
-
-    // quizBasicInfoForm: FormGroup = this.formBuilder.group({
-    //     'quizTitle': ['', [Validators.required]],
-    //     'quizTopic': ['', Validators.required],
-    //     'questions': this.formBuilder.array([]),
-    // });
-
-    // get questionsFromArray(): any{
-    //     return this.quizBasicInfoForm.get('questions') as FormArray;
-    // }
-
-    // question(): any{
-    //     return this.formBuilder.group({
-    //         question:this.formBuilder.control(''),
-    //     })
-    // }
-
-    // addControl(): void {
-    //     this.questionsFromArray.push(this.question);
-    // }
-
-    // remove(i: number): void{
-    //     this.questionsFromArray.remove(i);
-    // }
-
-    // formValue(): void{
-    //     console.log(this.quizBasicInfoForm.value);     
-    // }
-
-
     newQuizz: IQuiz = {
         title: '',
         creatorId: '',
         topic: '',
-        questions: []
+        questions: [],
     };
 
     isInEditMode: boolean = true;
     user: IUser | undefined;
 
-    constructor(private formBuilder: FormBuilder, private quizService: QuizService) { }
+    constructor(private formBuilder: FormBuilder, private quizService: QuizService, private router: Router, private snackBar: MatSnackBar) { }
 
     ngOnInit(): void {
         this.user = JSON.parse(localStorage.getItem("user") || "")
@@ -69,7 +42,11 @@ export class AddQuizzComponent implements OnInit {
 
         try {
             this.quizService.addQuiz(this.newQuizz);
+            this.snackBar.open('Quiz saved!', '', { duration: 2000, horizontalPosition: 'center', verticalPosition: 'top' });
+            this.router.navigate(['/']);
+
         } catch (error) {
+            this.snackBar.open('Quiz not saved! PLease try again', '', { duration: 2000, horizontalPosition: 'center', verticalPosition: 'top' });
             console.log(error);
         }
     }
@@ -99,6 +76,4 @@ export class AddQuizzComponent implements OnInit {
         this.newQuizz.questions.push(newQuestion);
         form.reset()
     }
-
-
 }

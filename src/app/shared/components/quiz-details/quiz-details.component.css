@@ -23,7 +23,7 @@ mat-form-field {
     width: 100%;
 }
 
-button[type=submit]{
+button.submit{
     display: block;
     margin: auto;
     margin-top: 1em;

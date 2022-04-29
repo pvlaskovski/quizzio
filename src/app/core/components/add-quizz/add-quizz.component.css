@@ -20,3 +20,13 @@ button {
 .true-false-buttons {
     padding-left: 1em;
 }
+
+.button-save{
+    display: block;
+    margin: auto;
+    margin-top: 1em; 
+}
+
+.quizz-data-container{
+    margin-top: 1em;
+}

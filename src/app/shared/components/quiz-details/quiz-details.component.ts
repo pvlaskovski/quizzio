@@ -1,12 +1,14 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormControl } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, NgForm } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatAccordion } from '@angular/material/expansion';
 import { IQuestion } from 'src/app/core/interfaces/question';
 import { IQuiz } from 'src/app/core/interfaces/quiz';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { Output, EventEmitter } from '@angular/core';
 
 import { QuizResultDialogComponent } from '../quiz-result-dialog/quiz-result-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 
@@ -17,10 +19,14 @@ import { QuizResultDialogComponent } from '../quiz-result-dialog/quiz-result-dia
 })
 export class QuizDetailsComponent implements OnInit {
 
-    constructor(private formBuilder: FormBuilder, private dialog: MatDialog) { }
+    constructor(private formBuilder: FormBuilder, private dialog: MatDialog, private snackBar: MatSnackBar) { }
     @ViewChild(MatAccordion) accordion!: MatAccordion;
+    @ViewChild('trueFalseQuestion') form!: NgForm
+
     @Input() quiz!: IQuiz;
-    @Input()isInEditMode: boolean = false;
+    @Input() isInEditMode: boolean = false;
+
+    @Output() updateQuizEvent = new EventEmitter<{}>();
 
     correctAnswers: string[] = [];
     defaultChoice: boolean = true;
@@ -49,7 +55,31 @@ export class QuizDetailsComponent implements OnInit {
                 dialogRef.close();
             }
         })
+    }
 
+    radioChange(event: any) {
+        console.log(event.value);
+        this.quiz.questions[0].correctAnswers = [];
+        this.quiz.questions[0].incorrectAnswers = [];
+
+        this.quiz.questions[0].correctAnswers.push(event.value);
+
+        if (event.value === 'true') {
+            this.quiz.questions[0].incorrectAnswers.push('false');
+        } else {
+            this.quiz.questions[0].incorrectAnswers.push('true');
+        }
+        this.snackBar.open('Correct answer updated!', '', { duration: 2000, horizontalPosition: 'center', verticalPosition: 'top' })
+    }
+
+    updateQuestion(index: number) {
+        let question = this.form.controls['question'].value;
+      
+        if (question.length>9) {
+            this.snackBar.open('Question updated!', '', { duration: 2000, horizontalPosition: 'center', verticalPosition: 'top' })
+        }
+
+        console.log(this.quiz);
     }
 
     submitQuiz(): void {

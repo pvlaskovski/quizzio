@@ -27,11 +27,11 @@
                 </p>
             </mat-card-content>
 
-            <mat-card-actions>
+            <!-- <mat-card-actions>
                 <button mat-raised-button color="primary" [disabled]="!basicQuizInfo.valid" type="submit">
                     Save quiz
                 </button>
-            </mat-card-actions>
+            </mat-card-actions> -->
 
         </form>
     </mat-card>
@@ -112,6 +112,10 @@
         </mat-tab> -->
 
     </mat-tab-group>
+
 </div>
+<button class="button-save" mat-raised-button color="primary" [disabled]="!basicQuizInfo.valid" type="button" (click)="saveQuiz(basicQuizInfo)">
+    Save quiz
+</button>
 
 <app-quiz-details [quiz]="newQuizz" [isInEditMode]="isInEditMode"></app-quiz-details>
