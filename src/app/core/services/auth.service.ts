@@ -52,16 +52,17 @@ export class AuthService {
     }
 
     // Sign up with email/password
-    register(email: string, password: string) {
-        
+    register(email: string, password: string): Promise<boolean> {   
         return this.afAuth
             .createUserWithEmailAndPassword(email, password)
             .then((result) => {
                 this.SetUserData(result.user);
                 this.router.navigate(['/']);
+                return true;
             })
             .catch((error) => {
                 window.alert(error.message);
+                return false;
             });
     }
 

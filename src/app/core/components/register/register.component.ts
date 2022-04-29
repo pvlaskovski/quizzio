@@ -78,9 +78,14 @@ export class RegisterComponent implements OnInit {
 
         if (password === rePassword) {
             try {
-                this.authService.register(email, password).then(()=>{
-                    this.snackBar.open('Welcome to the site ' + this.registerForm.value.email + '!', '',{duration: 2000, horizontalPosition: 'center', verticalPosition: 'top'})
+                this.authService.register(email, password).then((res: boolean) => {
+                    console.log(res);
+
+                    if (res) {
+                        this.snackBar.open('Welcome to the site ' + this.registerForm.value.email + '!', '', { duration: 2000, horizontalPosition: 'center', verticalPosition: 'top' })
+                    }
                 })
+
             } catch (error) {
                 this.isSuccesfullRegister = false;
             }
