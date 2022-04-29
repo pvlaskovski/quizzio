@@ -9,6 +9,8 @@ import { Output, EventEmitter } from '@angular/core';
 
 import { QuizResultDialogComponent } from '../quiz-result-dialog/quiz-result-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { QuizService } from 'src/app/core/services/quiz.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 
@@ -19,19 +21,24 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class QuizDetailsComponent implements OnInit {
 
-    constructor(private formBuilder: FormBuilder, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+    constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private quizService: QuizService, private router: Router) { }
     @ViewChild(MatAccordion) accordion!: MatAccordion;
     @ViewChild('trueFalseQuestion') form!: NgForm
 
     @Input() quiz!: IQuiz;
     @Input() isInEditMode: boolean = false;
+    @Input() addExtraButtons: boolean = false;
 
     @Output() updateQuizEvent = new EventEmitter<{}>();
 
     correctAnswers: string[] = [];
     defaultChoice: boolean = true;
+    isAuthor: boolean = false;
+    localUserId: string = '';
 
     ngOnInit(): void {
+        let localUser = JSON.parse(localStorage.getItem("user") || "");
+        this.localUserId = localUser?.uid;
     }
 
     toggleEditMode(): void {
@@ -57,26 +64,28 @@ export class QuizDetailsComponent implements OnInit {
         })
     }
 
-    radioChange(event: any) {
+    radioChange(event: any, index: number) {
         console.log(event.value);
-        this.quiz.questions[0].correctAnswers = [];
-        this.quiz.questions[0].incorrectAnswers = [];
+        this.quiz.questions[index].correctAnswers = [];
+        this.quiz.questions[index].incorrectAnswers = [];
 
-        this.quiz.questions[0].correctAnswers.push(event.value);
+        this.quiz.questions[index].correctAnswers.push(event.value);
 
         if (event.value === 'true') {
-            this.quiz.questions[0].incorrectAnswers.push('false');
+            this.quiz.questions[index].incorrectAnswers.push('false');
         } else {
-            this.quiz.questions[0].incorrectAnswers.push('true');
+            this.quiz.questions[index].incorrectAnswers.push('true');
         }
         this.snackBar.open('Correct answer updated!', '', { duration: 2000, horizontalPosition: 'center', verticalPosition: 'top' })
     }
 
     updateQuestion(index: number) {
         let question = this.form.controls['question'].value;
-      
-        if (question.length>9) {
-            this.snackBar.open('Question updated!', '', { duration: 2000, horizontalPosition: 'center', verticalPosition: 'top' })
+        console.log(index);
+        
+        // this.quiz.questions[0] = question;
+        if (question.length > 9) {
+            this.snackBar.open('Question updated!', '', { duration: 2000, horizontalPosition: 'center', verticalPosition: 'top' });
         }
 
         console.log(this.quiz);
@@ -119,6 +128,22 @@ export class QuizDetailsComponent implements OnInit {
         // console.log('INCORRECT ANSWERS GIVEN ARE: - > ' + incorrectAnswers);
 
         this.openDialog();
+    }
+
+    deleteQuiz(quizId: string) {
+        const dialogData = { text: 'Are you sure you want to delete this quiz?' };
+        const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+            data: dialogData,
+        });
+
+        dialogRef.afterClosed().subscribe(isConfirmed => {
+            if (isConfirmed) {
+                this.quizService.deleteQuizById(quizId);
+                this.router.navigate(['/']);
+            } else {
+                dialogRef.close();
+            }
+        })
     }
 
 

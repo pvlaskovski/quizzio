@@ -1,13 +1,16 @@
-<ng-container *ngIf="!isInEditMode" >
+<ng-container>
     <h2>Quizz name: {{quiz?.title}}</h2>
     <h4>Quizz topic: {{quiz?.topic}}</h4>
 </ng-container>
 
-<form *ngIf="quiz?.questions" id="myForm">
+<form *ngIf="quiz && quiz?.questions" id="myForm">
     <ng-container>
         <div *ngIf="quiz.questions.length > 0" class="expand-buttons">
             <button mat-button type="button" color="primary" (click)="accordion.openAll()">Expand All</button>
             <button mat-button type="button" color="primary" (click)="accordion.closeAll()">Collapse All</button>
+
+            <button *ngIf="quiz.creatorId! === localUserId && addExtraButtons" mat-button type="button" color="primary" (click)="deleteQuiz(quiz.id!)">Delete quiz</button>
+            <button *ngIf="quiz.creatorId! === localUserId && addExtraButtons" mat-button type="button" color="primary" (click)="toggleEditMode()">{{isInEditMode? 'View Quiz': 'Edit Quiz'}}</button>
         </div>
 
         <mat-accordion multi>
@@ -39,7 +42,7 @@
                             <mat-form-field appearance="fill">
                                 <mat-label>Question</mat-label>
                                 <mat-icon matPrefix>help_outline</mat-icon>
-                                <input [ngModel]="question.question" required minlength="10" name="question" matInput
+                                <input [(ngModel)]="question.question" required minlength="10" name="question" matInput
                                     placeholder="Type your question here" autocomplete="off">
 
                                 <mat-error>The Question is required and should be minimum 10 characters long</mat-error>
@@ -47,7 +50,7 @@
                         </p>
                         <p>Select the correct answer for this question.</p>
                         <p>
-                            <mat-radio-group ngModel required name={{indexOfElement}} aria-label="Select an option" (change)="radioChange($event)"
+                            <mat-radio-group ngModel required name={{indexOfElement}} aria-label="Select an option" (change)="radioChange($event, indexOfElement)"
                                 class="true-false-buttons">
                                 
                                 <mat-radio-button [checked]="question.correctAnswers[0] == 'true'" value="true" color="accent">True</mat-radio-button>
@@ -61,8 +64,7 @@
                     </form>
                     <mat-action-row>
                         <button type="button" (click)="updateQuestion(indexOfElement)" mat-button color="primary">Update question</button>
-                        <button type="button" (click)="deleteQuestion(indexOfElement)" mat-button
-                            color="primary">Delete</button>
+                        <button type="button" (click)="deleteQuestion(indexOfElement)" mat-button color="primary">Delete</button>
                     </mat-action-row>
                 </ng-container>
                 <!-- EDIT MODE -->

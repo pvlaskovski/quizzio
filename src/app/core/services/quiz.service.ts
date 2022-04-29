@@ -64,4 +64,8 @@ export class QuizService {
         )
     }
 
+    deleteQuizById(quizId: string): void {
+        const tutorialsRef = this.db.collection('quizzes');
+        tutorialsRef.doc(quizId).delete();
+    }
 }
