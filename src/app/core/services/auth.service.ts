@@ -61,7 +61,7 @@ export class AuthService {
                 return true;
             })
             .catch((error) => {
-                window.alert(error.message);
+                // window.alert(error.message);
                 return false;
             });
     }

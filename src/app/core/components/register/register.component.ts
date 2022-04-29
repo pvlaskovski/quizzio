@@ -83,6 +83,8 @@ export class RegisterComponent implements OnInit {
 
                     if (res) {
                         this.snackBar.open('Welcome to the site ' + this.registerForm.value.email + '!', '', { duration: 2000, horizontalPosition: 'center', verticalPosition: 'top' })
+                    }else{
+                        this.snackBar.open('Unsucessful registration! Please try again.', '', { duration: 2000, horizontalPosition: 'center', verticalPosition: 'top' })
                     }
                 })
 
