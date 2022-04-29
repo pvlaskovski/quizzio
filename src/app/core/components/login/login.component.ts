@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
         console.log(this.loginForm.value);
         const { email, password } = this.loginForm.value;
         this.authService.logIn(email, password);
-        this.isSuccesfullLogin = this.authService.isLoggedIn;
+        // this.isSuccesfullLogin = this.authService.isLoggedIn;
     }
 
 }
