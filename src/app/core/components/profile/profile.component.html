@@ -26,8 +26,8 @@
     <mat-tab label="Favorite quizess">
         <!-- TODO: Page if no quizzes -->
         <mat-nav-list *ngFor="let quiz of favQuizzes">
-            <mat-list-item [routerLink]="['quiz/', quiz?.id]">
-                <mat-icon matListIcon>star</mat-icon>
+            <mat-list-item [routerLink]="['/take-quiz/', quiz?.id]">
+                <mat-icon class="fav-icon" matListIcon>star</mat-icon>
                 <p>{{quiz.title}}</p>
             </mat-list-item>
         </mat-nav-list>

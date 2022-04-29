@@ -32,7 +32,6 @@ export class ProfileComponent implements OnInit {
 
         const userPromise = firstValueFrom(this.userService.getUserById(this.localUser?.uid || ''));
         userPromise.then(user => {
-            
             user.favoriteQuizzes?.forEach(id => {
                 this.quizService.getQuizByQuizId(id).subscribe(quiz => {
                     this.favQuizzes = this.favQuizzes.filter(x => x.id?.toString() !== quiz.id?.toString());

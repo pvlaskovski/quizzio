@@ -7,3 +7,7 @@ mat-icon.mat-card-avatar {
 .profile-container{
     text-align: center;
 }
+
+.fav-icon{
+    color: goldenrod;
+}
