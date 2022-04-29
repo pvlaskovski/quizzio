@@ -20,9 +20,10 @@ export class QuizDetailsComponent implements OnInit {
     constructor(private formBuilder: FormBuilder, private dialog: MatDialog) { }
     @ViewChild(MatAccordion) accordion!: MatAccordion;
     @Input() quiz!: IQuiz;
+    @Input()isInEditMode: boolean = false;
 
-    isInEditMode: boolean = false;
     correctAnswers: string[] = [];
+    defaultChoice: boolean = true;
 
     ngOnInit(): void {
     }

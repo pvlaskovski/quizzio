@@ -13,6 +13,7 @@ export class TakeQuizComponent implements OnInit {
     constructor(private route: ActivatedRoute, private quizService: QuizService) { }
 
     quiz!: IQuiz;
+    isInEditMode: boolean = false;
 
     ngOnInit(): void {
         const quizId = this.route.snapshot.paramMap.get('id');

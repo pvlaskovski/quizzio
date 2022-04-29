@@ -3,12 +3,12 @@
 
 <form (ngSubmit)="submitQuiz()" id="myForm">
     <ng-container>
-        <div class="example-action-buttons">
+        <div *ngIf="quiz.questions.length > 0" class="example-action-buttons">
             <button mat-button type="button" (click)="accordion.openAll()">Expand All</button>
             <button mat-button type="button" (click)="accordion.closeAll()">Collapse All</button>
         </div>
-        
-        <mat-accordion  multi>
+
+        <mat-accordion multi>
             <mat-expansion-panel *ngFor="let question of quiz?.questions; let indexOfElement=index;" hideToggle>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
@@ -17,35 +17,51 @@
                 </mat-expansion-panel-header>
 
                 <!-- Display True/Fase Question -->
+                <!-- VIEW MODE -->
                 <ng-container *ngIf="!isInEditMode">
                     <p>
                         Question: {{question.question}}
                     </p>
+                    <mat-radio-group aria-label="Select an option" class="true-false-buttons" name="{{indexOfElement}}">
+                        <mat-radio-button value="true" color="accent">True</mat-radio-button>
+                        <mat-radio-button value="false" color="accent">False</mat-radio-button>
+                    </mat-radio-group>
                 </ng-container>
+                <!-- VIEW MODE -->
 
+                <!-- EDIT MODE -->
                 <ng-container *ngIf="isInEditMode">
-                    <p>
-                        <mat-form-field appearance="fill">
-                            <mat-label>Question</mat-label>
-                            <mat-icon matPrefix>help_outline</mat-icon>
-                            <input ngModel required minlength="10" matInput placeholder="Type your question here"
-                                autocomplete="off">
-                            <mat-error>The Question is required and should be minimum 10 characters long</mat-error>
-                        </mat-form-field>
-                    </p>
-                    <p>Select the correct answer for this question.</p>
+
+                    <form #trueFalseQuestion="ngForm">
+                        <p>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Question</mat-label>
+                                <mat-icon matPrefix>help_outline</mat-icon>
+                                <input [(ngModel)]="question.question" required minlength="10" name="question" matInput
+                                    placeholder="Type your question here" autocomplete="off">
+
+                                <mat-error>The Question is required and should be minimum 10 characters long</mat-error>
+                            </mat-form-field>
+                        </p>
+                        <p>Select the correct answer for this question.</p>
+                        <p>
+                            <mat-radio-group ngModel required name="{{indexOfElement}}" aria-label="Select an option"
+                                class="true-false-buttons">
+                                <mat-radio-button [checked]="question.correctAnswers[0] === 'true'" value="true" color="accent">True</mat-radio-button>
+                                <mat-radio-button [checked]="question.correctAnswers[0] === 'false'" value="false" color="accent">False</mat-radio-button>
+                                <mat-error
+                                    *ngIf="trueFalseQuestion.controls[indexOfElement].touched && trueFalseQuestion.controls[indexOfElement].invalid">
+                                    Please select the correct answer!</mat-error>
+                            </mat-radio-group>
+                        </p>
+                    </form>
+                    <mat-action-row>
+                        <button type="button" (click)="toggleEditMode()" mat-button color="primary">Edit</button>
+                        <button type="button" (click)="deleteQuestion(indexOfElement)" mat-button
+                            color="primary">Delete</button>
+                    </mat-action-row>
                 </ng-container>
-
-                <mat-radio-group aria-label="Select an option" class="true-false-buttons" name="{{indexOfElement}}">
-                    <mat-radio-button value="true" color="accent">True</mat-radio-button>
-                    <mat-radio-button value="false" color="accent">False</mat-radio-button>
-                </mat-radio-group>
-
-
-                <mat-action-row>
-                    <button type="button" (click)="toggleEditMode()" mat-button color="primary">Edit</button>
-                    <button type="button" (click)="deleteQuestion(indexOfElement)" mat-button color="primary">Delete</button>
-                </mat-action-row>
+                <!-- EDIT MODE -->
                 <!-- Display True/Fase Question -->
 
             </mat-expansion-panel>
