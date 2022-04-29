@@ -15,7 +15,6 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 
-import { TrueFalseQuestionComponent } from './components/true-false-question/true-false-question.component';
 import { QuizResultDialogComponent } from './components/quiz-result-dialog/quiz-result-dialog.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
@@ -24,7 +23,6 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
   declarations: [
     CustomProgressBarComponent,
     QuizDetailsComponent,
-    TrueFalseQuestionComponent,
     QuizResultDialogComponent,
     ConfirmationDialogComponent,
   ],

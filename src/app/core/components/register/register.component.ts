@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { stringsMatchValidator } from 'src/app/shared/validators/stringsMatchValidator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-register',
@@ -39,7 +40,7 @@ export class RegisterComponent implements OnInit {
         })
     });
 
-    constructor(public authService: AuthService, private formBuilder: FormBuilder,) { }
+    constructor(public authService: AuthService, private formBuilder: FormBuilder, private snackBar: MatSnackBar) { }
 
     ngOnInit(): void {
         // TODO: Password should contain at least 6 chars
@@ -65,7 +66,7 @@ export class RegisterComponent implements OnInit {
         })
     }
 
-    
+
 
     onSubmit(): void {
         // TODO: display error if registration fails
@@ -75,18 +76,17 @@ export class RegisterComponent implements OnInit {
         let rePassword = this.registerForm.value.passwords.rePassword;
         let email = this.registerForm.value.email;
 
-        if(password === rePassword){
+        if (password === rePassword) {
             try {
-                this.authService.register(email, password);
+                this.authService.register(email, password).then(()=>{
+                    this.snackBar.open('Welcome to the site ' + this.registerForm.value.email + '!', '',{duration: 2000, horizontalPosition: 'center', verticalPosition: 'top'})
+                })
             } catch (error) {
                 this.isSuccesfullRegister = false;
             }
         }
 
     }
-
-
-
 
     togglePasswordVisibility(): void {
         this.isPasswordVisible = !this.isPasswordVisible;

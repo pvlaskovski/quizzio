@@ -26,6 +26,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 
 import {MatDialogModule} from '@angular/material/dialog';
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+
 
 
 import { FormsModule } from '@angular/forms';
@@ -65,7 +67,7 @@ import { TakeQuizComponent } from './components/take-quiz/take-quiz.component';
         AppRoutingModule,
         MatSelectModule,
         MatRadioModule,
-        MatDialogModule,
+        MatDialogModule, 
     ],
     exports: [
         HeaderComponent,
@@ -73,9 +75,9 @@ import { TakeQuizComponent } from './components/take-quiz/take-quiz.component';
         LoginComponent,
         ProfileComponent,
         RegisterComponent,
+        MatSnackBarModule
     ],
-    providers:[
-        
+    providers:[ 
     ]
 })
 export class CoreModule { }
