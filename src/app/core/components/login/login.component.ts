@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
 
     }
 
-    togglePasswordVisibility(): void{
+    togglePasswordVisibility(): void {
         this.isPasswordVisible = !this.isPasswordVisible;
     }
 
@@ -31,13 +31,12 @@ export class LoginComponent implements OnInit {
         console.log(this.loginForm.value);
 
         const { email, password } = this.loginForm.value;
-        this.authService.logIn(email, password).then(res =>{
-            if(res){          
-                this.snackBar.open('Welcome to the site '  + email+ '!', '', { duration: 2000, horizontalPosition: 'center', verticalPosition: 'top' })
-            }else{
+        this.authService.logIn(email, password).then(res => {
+            if (res) {
+                this.snackBar.open('Welcome to the site ' + email + '!', '', { duration: 2000, horizontalPosition: 'center', verticalPosition: 'top' })
+            } else {
                 this.isSuccesfullLogin = false;
             }
-            
         })
     }
 
