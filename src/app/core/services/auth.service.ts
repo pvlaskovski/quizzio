@@ -36,7 +36,7 @@ export class AuthService {
     }
 
     // Sign in with email/password
-    logIn(email: string, password: string) {
+    logIn(email: string, password: string)  {
         return this.afAuth
             .signInWithEmailAndPassword(email, password)
             .then((result) => {
@@ -44,10 +44,12 @@ export class AuthService {
                     this.router.navigate(['/']);
                 });
                 this.SetUserData(result.user);
+                return true;
             })
             .catch((error) => {
                 // console.log(error.message);
                 // window.alert(error.message);
+                return false;
             });
     }
 

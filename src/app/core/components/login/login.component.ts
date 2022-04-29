@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 
 @Component({
@@ -15,7 +17,7 @@ export class LoginComponent implements OnInit {
     isSuccesfullLogin: boolean = true;
     isPasswordVisible: boolean = false;
 
-    constructor(public authService: AuthService) { }
+    constructor(public authService: AuthService, private snackBar: MatSnackBar) { }
 
     ngOnInit(): void {
 
@@ -27,9 +29,16 @@ export class LoginComponent implements OnInit {
 
     onSubmit(): void {
         console.log(this.loginForm.value);
+
         const { email, password } = this.loginForm.value;
-        this.authService.logIn(email, password);
-        // this.isSuccesfullLogin = this.authService.isLoggedIn;
+        this.authService.logIn(email, password).then(res =>{
+            if(res){          
+                this.snackBar.open('Welcome to the site '  + email+ '!', '', { duration: 2000, horizontalPosition: 'center', verticalPosition: 'top' })
+            }else{
+                this.isSuccesfullLogin = false;
+            }
+            
+        })
     }
 
 }
