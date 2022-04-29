@@ -4,6 +4,7 @@ import { stringsMatchValidator } from 'src/app/shared/validators/stringsMatchVal
 import { IQuiz } from '../../interfaces/quiz';
 import { IQuestion, QuestionTypes } from '../../interfaces/question';
 import { QuizService } from '../../services/quiz.service';
+import { IUser } from '../../interfaces/iuser';
 
 @Component({
     selector: 'app-add-quizz',
@@ -40,15 +41,22 @@ export class AddQuizzComponent implements OnInit {
     //     console.log(this.quizBasicInfoForm.value);     
     // }
 
+
     newQuizz: IQuiz = {
         title: '',
+        creatorId: '',
         topic: '',
         questions: []
     };
 
+    isInEditMode: boolean = true;
+    user: IUser | undefined;
+
     constructor(private formBuilder: FormBuilder, private quizService: QuizService) { }
 
     ngOnInit(): void {
+        this.user = JSON.parse(localStorage.getItem("user") || "")
+        this.newQuizz.creatorId = this.user?.uid || "";
     }
 
     saveQuiz(form: NgForm): void {
@@ -62,7 +70,7 @@ export class AddQuizzComponent implements OnInit {
         try {
             this.quizService.addQuiz(this.newQuizz);
         } catch (error) {
-            console.log(error);   
+            console.log(error);
         }
     }
 
@@ -91,7 +99,6 @@ export class AddQuizzComponent implements OnInit {
         this.newQuizz.questions.push(newQuestion);
         form.reset()
     }
-
 
 
 }

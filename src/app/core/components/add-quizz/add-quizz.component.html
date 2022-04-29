@@ -28,11 +28,9 @@
             </mat-card-content>
 
             <mat-card-actions>
-                <button 
-                    [disabled]="basicQuizInfo.invalid" mat-raised-button color="primary"
-                    type="submit"
-                >
-                    Save quiz</button>
+                <button mat-raised-button color="primary" [disabled]="!basicQuizInfo.valid" type="submit">
+                    Save quiz
+                </button>
             </mat-card-actions>
 
         </form>
@@ -60,11 +58,13 @@
                         class="true-false-buttons">
                         <mat-radio-button value="true" color="accent">True</mat-radio-button>
                         <mat-radio-button value="false" color="accent">False</mat-radio-button>
+                        <mat-error *ngIf="trueFalseQuestion.controls['radioControl']?.touched && trueFalseQuestion.controls['radioControl'].invalid">Please select the correct answer!</mat-error>
                     </mat-radio-group>
                 </p>
-                <button mat-raised-button color="primary" [disabled]="trueFalseQuestion.invalid" (click)="addTrueFalseQuestion(trueFalseQuestion)">Add
-                    questions</button>
             </form>
+            <button mat-raised-button color="primary" [disabled]="true && !trueFalseQuestion.valid"
+                (click)="addTrueFalseQuestion(trueFalseQuestion)">Add
+                questions</button>
         </mat-tab>
         <!-- Add True/False Question -->
 
@@ -114,4 +114,4 @@
     </mat-tab-group>
 </div>
 
-<app-quiz-details [quiz]="newQuizz"></app-quiz-details>
+<app-quiz-details [quiz]="newQuizz" [isInEditMode]="isInEditMode"></app-quiz-details>
