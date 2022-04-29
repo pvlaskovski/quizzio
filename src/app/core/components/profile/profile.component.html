@@ -23,7 +23,7 @@
         </mat-nav-list>
     </mat-tab>
 
-    <mat-tab label="Favorite quizess">
+    <mat-tab label="Favorite quizzes">
         <!-- TODO: Page if no quizzes -->
         <mat-nav-list *ngFor="let quiz of favQuizzes">
             <mat-list-item [routerLink]="['/take-quiz/', quiz?.id]">
@@ -33,9 +33,31 @@
         </mat-nav-list>
     </mat-tab>
 
+
     <mat-tab label="Achievements">
-        <!-- TODO: Page if no quizzes -->
-        Achievements
+
+        <!-- One created quiz -->
+        <div class="grid-container">
+            <mat-card class="quiz-card">
+                <mat-card-content>
+                    <img *ngIf="quizzes && quizzes.length > 0" mat-card-image
+                        src="https://thumbs.dreamstime.com/b/beginner-stamp-round-grunge-sign-label-181768518.jpg">
+                    <h2>Beginner</h2>
+                    <span *ngIf="quizzes && quizzes.length == 0">You can achieve that by having one quiz created by you available to everyone</span>
+                </mat-card-content>
+            </mat-card>
+
+
+            <!-- Five created quiz -->
+            <mat-card class="quiz-card">
+                <mat-card-content>
+                    <img *ngIf="quizzes && quizzes.length > 5" mat-card-image
+                        src="https://thumbs.dreamstime.com/b/master-text-green-grungy-vintage-stamp-rectangle-208493903.jpg">
+                    <h2>Quiz Master</h2>
+                    <span *ngIf="quizzes && quizzes.length < 5">You can achieve that by having five quiz created by you available to everyone</span>
+                </mat-card-content>
+            </mat-card>
+        </div>
     </mat-tab>
 
 </mat-tab-group>
