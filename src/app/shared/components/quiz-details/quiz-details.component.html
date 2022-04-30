@@ -52,7 +52,7 @@
                         </p>
                         <p>Select the correct answer for this question.</p>
                         <p>
-                            <mat-radio-group ngModel required name={{indexOfElement}} aria-label="Select an option"
+                            <mat-radio-group ngModel name={{indexOfElement}} aria-label="Select an option"
                                 (change)="radioChange($event, indexOfElement)" class="true-false-buttons">
 
                                 <mat-radio-button [checked]="question.correctAnswers[0] == 'true'" value="true"
@@ -60,9 +60,6 @@
                                 <mat-radio-button [checked]="question.correctAnswers[0] == 'false'" value="false"
                                     color="accent">False</mat-radio-button>
 
-                                <mat-error
-                                    *ngIf="trueFalseQuestion.controls[indexOfElement].touched && trueFalseQuestion.controls[indexOfElement].invalid">
-                                    Please select the correct answer!</mat-error>
                             </mat-radio-group>
                         </p>
                     </form>
@@ -78,7 +75,9 @@
 
             </mat-expansion-panel>
         </mat-accordion>
-        <button (click)="submitQuiz()" *ngIf="!isInEditMode" type="button" class="submit" mat-raised-button color="primary">Submit quiz</button>
-        <button (click)="saveQuiz(quiz.id!)" *ngIf="isInEditMode && addExtraButtons" type="button" class="submit" mat-raised-button color="primary">Save quiz</button>
+        <button (click)="submitQuiz()" *ngIf="!isInEditMode" type="button" class="submit" mat-raised-button
+            color="primary">Submit quiz</button>
+        <button (click)="saveQuiz(quiz.id!)" *ngIf="isInEditMode && addExtraButtons" type="button" class="submit"
+            mat-raised-button color="primary">Save quiz</button>
     </ng-container>
 </form>

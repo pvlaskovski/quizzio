@@ -162,7 +162,7 @@ export class QuizDetailsComponent implements OnInit {
     }
 
     saveQuiz(quizId: string): void {
-        if (this.form.valid) {
+        if (this.form.control.get('question')!.valid) {
             console.log(this.quiz);
             try {
                 this.quizService.updateQuiz(quizId, this.quiz);
