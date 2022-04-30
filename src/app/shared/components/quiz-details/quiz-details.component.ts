@@ -162,20 +162,12 @@ export class QuizDetailsComponent implements OnInit {
     }
 
     saveQuiz(quizId: string): void {
-        if (this.form.control.get('question')!.valid) {
-            console.log(this.quiz);
-            try {
-                this.quizService.updateQuiz(quizId, this.quiz);
-                this.snackBar.open('Quiz updated!', '', { duration: 2000, horizontalPosition: 'center', verticalPosition: 'top' })
-                this.router.navigate(['/']);
-            } catch (error) {
-                this.snackBar.open('Unable to update quiz!', '', { duration: 2000, horizontalPosition: 'center', verticalPosition: 'top' })
-            }
-        } else {
-            console.log('invalid form');
+        try {
+            this.quizService.updateQuiz(quizId, this.quiz);
+            this.snackBar.open('Quiz updated!', '', { duration: 2000, horizontalPosition: 'center', verticalPosition: 'top' })
+            this.router.navigate(['/']);
+        } catch (error) {
+            this.snackBar.open('Unable to update quiz!', '', { duration: 2000, horizontalPosition: 'center', verticalPosition: 'top' })
         }
     }
-
-
-
 }
