@@ -17,10 +17,7 @@ export class QuizService {
 
     items: Observable<IQuiz[]> | undefined;
 
-
     constructor(private db: AngularFirestore) {
-
-
     }
 
     addQuiz(quizz: IQuiz): void {
@@ -65,7 +62,12 @@ export class QuizService {
     }
 
     deleteQuizById(quizId: string): void {
-        const tutorialsRef = this.db.collection('quizzes');
-        tutorialsRef.doc(quizId).delete();
+        const quizzesRef = this.db.collection('quizzes');
+        quizzesRef.doc(quizId).delete();
+    }
+
+    updateQuiz(quizId: string, newQuiz:IQuiz){
+        const quizRef = this.db.doc(`quizzes/${quizId}`);
+        quizRef.update(newQuiz);
     }
 }

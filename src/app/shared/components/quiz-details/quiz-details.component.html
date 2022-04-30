@@ -9,8 +9,10 @@
             <button mat-button type="button" color="primary" (click)="accordion.openAll()">Expand All</button>
             <button mat-button type="button" color="primary" (click)="accordion.closeAll()">Collapse All</button>
 
-            <button *ngIf="quiz.creatorId! === localUserId && addExtraButtons" mat-button type="button" color="primary" (click)="deleteQuiz(quiz.id!)">Delete quiz</button>
-            <button *ngIf="quiz.creatorId! === localUserId && addExtraButtons" mat-button type="button" color="primary" (click)="toggleEditMode()">{{isInEditMode? 'View Quiz': 'Edit Quiz'}}</button>
+            <button *ngIf="quiz.creatorId! === localUserId && addExtraButtons" mat-button type="button" color="primary"
+                (click)="deleteQuiz(quiz.id!)">Delete quiz</button>
+            <button *ngIf="quiz.creatorId! === localUserId && addExtraButtons" mat-button type="button" color="primary"
+                (click)="toggleEditMode()">{{isInEditMode? 'View Quiz': 'Edit Quiz'}}</button>
         </div>
 
         <mat-accordion multi>
@@ -50,11 +52,13 @@
                         </p>
                         <p>Select the correct answer for this question.</p>
                         <p>
-                            <mat-radio-group ngModel required name={{indexOfElement}} aria-label="Select an option" (change)="radioChange($event, indexOfElement)"
-                                class="true-false-buttons">
-                                
-                                <mat-radio-button [checked]="question.correctAnswers[0] == 'true'" value="true" color="accent">True</mat-radio-button>
-                                <mat-radio-button [checked]="question.correctAnswers[0] == 'false'" value="false" color="accent">False</mat-radio-button>
+                            <mat-radio-group ngModel required name={{indexOfElement}} aria-label="Select an option"
+                                (change)="radioChange($event, indexOfElement)" class="true-false-buttons">
+
+                                <mat-radio-button [checked]="question.correctAnswers[0] == 'true'" value="true"
+                                    color="accent">True</mat-radio-button>
+                                <mat-radio-button [checked]="question.correctAnswers[0] == 'false'" value="false"
+                                    color="accent">False</mat-radio-button>
 
                                 <mat-error
                                     *ngIf="trueFalseQuestion.controls[indexOfElement].touched && trueFalseQuestion.controls[indexOfElement].invalid">
@@ -63,8 +67,10 @@
                         </p>
                     </form>
                     <mat-action-row>
-                        <button type="button" (click)="updateQuestion(indexOfElement)" mat-button color="primary">Update question</button>
-                        <button type="button" (click)="deleteQuestion(indexOfElement)" mat-button color="primary">Delete</button>
+                        <!-- <button type="button" (click)="updateQuestion(indexOfElement)" mat-button color="primary">Update
+                            question</button> -->
+                        <button type="button" (click)="deleteQuestion(indexOfElement)" mat-button
+                            color="primary">Delete</button>
                     </mat-action-row>
                 </ng-container>
                 <!-- EDIT MODE -->
@@ -73,5 +79,6 @@
             </mat-expansion-panel>
         </mat-accordion>
         <button (click)="submitQuiz()" *ngIf="!isInEditMode" type="button" class="submit" mat-raised-button color="primary">Submit quiz</button>
+        <button (click)="saveQuiz(quiz.id!)" *ngIf="isInEditMode && addExtraButtons" type="button" class="submit" mat-raised-button color="primary">Save quiz</button>
     </ng-container>
 </form>

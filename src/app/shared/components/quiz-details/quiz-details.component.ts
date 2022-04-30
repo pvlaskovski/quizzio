@@ -35,6 +35,7 @@ export class QuizDetailsComponent implements OnInit {
     defaultChoice: boolean = true;
     isAuthor: boolean = false;
     localUserId: string = '';
+    bottomSaveButton: boolean = false;
 
     ngOnInit(): void {
         let localUser = JSON.parse(localStorage.getItem("user") || "");
@@ -82,7 +83,7 @@ export class QuizDetailsComponent implements OnInit {
     updateQuestion(index: number) {
         let question = this.form.controls['question'].value;
         console.log(index);
-        
+
         // this.quiz.questions[0] = question;
         if (question.length > 9) {
             this.snackBar.open('Question updated!', '', { duration: 2000, horizontalPosition: 'center', verticalPosition: 'top' });
@@ -158,6 +159,21 @@ export class QuizDetailsComponent implements OnInit {
         };
 
         this.dialog.open(QuizResultDialogComponent, dialogConfig);
+    }
+
+    saveQuiz(quizId: string): void {
+        if (this.form.valid) {
+            console.log(this.quiz);
+            try {
+                this.quizService.updateQuiz(quizId, this.quiz);
+                this.snackBar.open('Quiz updated!', '', { duration: 2000, horizontalPosition: 'center', verticalPosition: 'top' })
+                this.router.navigate(['/']);
+            } catch (error) {
+                this.snackBar.open('Unable to update quiz!', '', { duration: 2000, horizontalPosition: 'center', verticalPosition: 'top' })
+            }
+        } else {
+            console.log('invalid form');
+        }
     }
 
 

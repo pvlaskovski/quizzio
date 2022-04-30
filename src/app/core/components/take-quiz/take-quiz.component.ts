@@ -15,6 +15,7 @@ export class TakeQuizComponent implements OnInit {
     quiz!: IQuiz;
     isInEditMode: boolean = false;
     addExtraButtons: boolean = true;
+   
 
 
     ngOnInit(): void {
