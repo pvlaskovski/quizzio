@@ -25,11 +25,13 @@ export class HomeComponent implements OnInit {
     ngOnInit(): void {
         this.localUser = JSON.parse(localStorage.getItem("user") || "");
 
-        this.userService.getUserById(this.localUser?.uid || '').subscribe(u =>{
-            this.currentUser = u;
-           
-            this.currentUserFavQuizzes = u.favoriteQuizzes;
-        })
+        if(this.localUser !== null){
+            this.userService.getUserById(this.localUser?.uid || '').subscribe(u =>{
+                this.currentUser = u;
+                this.currentUserFavQuizzes = u.favoriteQuizzes;
+            })
+        }
+
 
         this.quizService.getAllQuizzes().subscribe(data => {
             this.quizzes = data;

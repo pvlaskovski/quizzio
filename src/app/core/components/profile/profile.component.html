@@ -5,11 +5,6 @@
         <p *ngIf="localUser?.displayName">Name: {{localUser?.displayName}}</p>
         <p *ngIf="localUser?.email">Email: {{localUser?.email}}</p>
     </mat-card-content>
-
-    <mat-card-actions>
-
-        <button mat-button>Edit Profile</button>
-    </mat-card-actions>
 </mat-card>
 
 <mat-tab-group mat-align-tabs="start">
@@ -41,9 +36,10 @@
             <mat-card class="quiz-card">
                 <mat-card-content>
                     <img *ngIf="quizzes && quizzes.length > 0" mat-card-image
-                        src="https://thumbs.dreamstime.com/b/beginner-stamp-round-grunge-sign-label-181768518.jpg">
+                        src="../../../../assets/images/begginer.jpg">
                     <h2>Beginner</h2>
-                    <span *ngIf="quizzes && quizzes.length == 0">You can achieve that by having one quiz created by you available to everyone</span>
+                    <span *ngIf="quizzes && quizzes.length == 0">You can achieve that by having one quiz created by you
+                        available to everyone</span>
                 </mat-card-content>
             </mat-card>
 
@@ -52,9 +48,10 @@
             <mat-card class="quiz-card">
                 <mat-card-content>
                     <img *ngIf="quizzes && quizzes.length > 5" mat-card-image
-                        src="https://thumbs.dreamstime.com/b/master-text-green-grungy-vintage-stamp-rectangle-208493903.jpg">
+                        src="../../../../assets/images/master.jpg">
                     <h2>Quiz Master</h2>
-                    <span *ngIf="quizzes && quizzes.length < 5">You can achieve that by having five quiz created by you available to everyone</span>
+                    <span *ngIf="quizzes && quizzes.length < 5">You can achieve that by having five quiz created by you
+                        available to everyone</span>
                 </mat-card-content>
             </mat-card>
         </div>
